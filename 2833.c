@@ -7,7 +7,9 @@ int main()
 	scanf("%s",&str);
 	scanf("%d",&k);
 	c=strlen(str);
-	int a[c]={0};
+	int a[c];
+	for(i=0;i<c;i++)
+		a[i]=0;
 	for(i=0;i<c;i++)
 	{
 		n=0;
