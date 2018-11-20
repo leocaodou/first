@@ -3,11 +3,12 @@
 int main()
 {
 	char str[100000],str2[100000],q;
-	int i=0,j,k,m=0,n=0,b=0,t,e,f,c;
+    int i=0,j,k,m=0,n=0,b=0,t,e,f,c;
 	scanf("%s",&str);
 	scanf("%d",&k);
 	c=strlen(str);
-	int a[c]={0};
+	int a[100000]={0};
+	a[-1]=1;
 	for(i=0;i<c;i++)
 	{
 		n=0;
@@ -58,9 +59,11 @@ int main()
 			m=m+a[i];
 			if(a[i]==0)
 				j=j-1;
+			if(m>=k&&a[i-1]==0)
+				j=j-1;
 			j++;
 		}
-		e=b-j+1;
+		e=b-j;
 		printf("%d\n",e);
 		int b[e+1];
 		int y=0;
