@@ -4,7 +4,7 @@ int main()
 {
 	char str[100000],str2[100000],q;
     int i=0,j,k,m=0,n=0,b=0,t,e,f,c;
-	scanf("%s",&str);
+	scanf("%s",str);
 	scanf("%d",&k);
 	c=strlen(str);
 	int a[100000]={0};
