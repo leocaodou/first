@@ -11,9 +11,10 @@ int main()
 		for(j=1;j<=n;j++)
 		{
 			scanf("%d",&a[j]);
-			for(k=1;k<=j;k++)
-				b[i]=b[i]+a[j]*a[k];
 		}
+		for(j=1;j<=n;j++)
+		for(k=1;k<=j;k++)
+				b[i]=b[i]+a[j]*a[k];
 	}
 	for(i=1;i<=m;i++)
 	{

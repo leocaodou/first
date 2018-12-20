@@ -4,10 +4,10 @@ int main()
 	int n,m,i,j,k,t,p=0,l;
 	scanf("%d",&n);
 	int b[n+1]={0};
+	int a[1000000];
 	for(i=1;i<=n;i++)
 	{
 		scanf("%d",&m);
-		int a[m+1];
 		for(j=1;j<=m;j++)
 		{
 			scanf("%d",&a[j]);
