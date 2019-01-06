@@ -14,7 +14,7 @@ int main()
 	n=(a.year-1990)*365+(a.year-1990+2)/4;
 	if(a.year%400==0||(a.year%4==0&&a.year%100!=0))
 	{
-		for(i=1;i<=a.month;i++)
+		for(i=1;i<a.month;i++)
 		{
 			if(i==1)
 				y=y+31;
@@ -44,7 +44,7 @@ int main()
 	}
 		else
 		{
-			for(i=1;i<=a.month;i++)
+			for(i=1;i<a.month;i++)
 			{
 				if(i==1)
 					y=y+31;
@@ -72,8 +72,9 @@ int main()
 					y=y+31;
 		}
 	}
-	s=n+y+a.day;
-	if(s%3!=0)
+	s=n+y+a.day-(a.year-1900)/100;
+		printf("Output:\n");
+	if(s%5==0||s%5==4)
 		printf("He was sleeping at that day.\n");
 	else
 		printf("He was fishing at that day.\n");
