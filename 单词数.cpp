@@ -7,7 +7,7 @@ int main()
 		n=0;
 		while(1)
 		{	
-			while(scanf("%d",&a)!=EOF)
+			while(scanf("%c",&a)!=EOF)
 			if(a[0]=='#')
 				break;
 			n=n+1;
