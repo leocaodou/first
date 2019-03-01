@@ -9,7 +9,7 @@ int main()
 {
 	struct date a;
 	int n,y,r,i,s;
-	printf("Enter year/month/day: ");
+	print("Enter year/month/day: ");
 	scanf("%d/%d/%d",&a.year,&a.month,&a.day);
 	n=(a.year-1990)*365+(a.year-1990+2)/4;
 	if(a.year%400==0||(a.year%4==0&&a.year%100!=0))
