@@ -6,6 +6,6 @@ public class Welcome
 		Scanner input =new Scanner(System.in);
 		int y;
 		y = input.nextInt();
-		System.out.println(6+6);
+		System.out.println(6+6+9);
 	}
 }
