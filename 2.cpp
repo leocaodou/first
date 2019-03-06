@@ -1,5 +1,5 @@
 #include<stdio.h>
-int main()
+main(void)
 {
 	int a[21],b,i,j;
 	b=0;
