@@ -1,4 +1,5 @@
-	#include<stdio.h>
+#include<stdio.h>
+#include<algorithm>
 int main()
 {
 	int n=0,i,k=0,j,a=0,c=0,max=0,x;
