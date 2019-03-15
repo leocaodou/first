@@ -19,7 +19,6 @@ int main()
 	{
 		scanf("%lld",&b[i]);
 	}
-	printf("%lld\n",s);
 	for(i=0;i<m;i++)
 	{
 		x=s;
