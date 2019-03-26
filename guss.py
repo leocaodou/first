@@ -1,6 +1,6 @@
 i = 1
+a = 5
 while True :
-	a = 5
 	x = eval(input("请猜一个1~9的数字\n"))
 	if a > x :
 		print("遗憾，太小了")
