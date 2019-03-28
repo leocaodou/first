@@ -1,9 +1,9 @@
 import random
 i = 1
 y=0
-a = random.randint( 0, 100)
+a = random.randint( 0, 10000)
 while True :
-	x = input("请猜一个0~100的数字\n")
+	x = input("请猜一个0~10000的数字\n")
 	for j in x :
 		if j not in "1234567890" :
 			print("输入内容必须是整数！")
