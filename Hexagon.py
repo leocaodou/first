@@ -3,7 +3,6 @@ turtle.penup()
 turtle.pensize(10)
 turtle.fd(-200)
 turtle.color('orange')
-turtle.begin_fill()
 turtle.pencolor("yellow")
 x=30
 turtle.seth(x)
@@ -28,5 +27,4 @@ for i in range(2):
 turtle.pencolor("black")
 turtle.seth(x-120)
 turtle.fd(280)
-turtle.end_fill()
 turtle.done()
