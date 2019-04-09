@@ -8,7 +8,7 @@ int main()
 	for(i = 0;i < n;i++)
 	{
 		scanf("%lld%lld",&a[i][0],&a[i][1]);
-		b[i] = (a[i][0]-1)*9+a[i][1];
+		b[i] = (a[i][0]-1)*9 + a[i][1];
 	}
 	for(i = 0;i < n;i++)
 		printf("%d\n",b[i]);
