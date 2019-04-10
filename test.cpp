@@ -1,9 +1,9 @@
-#include <stdio.h>
-#include<string.h>
-#include<stdlib.h>
+#include<stdio.h>
 int main()
 {
-	char *p;
-	scanf("%s",p);
-	printf("%s",p);
+	char *x;
+	x = new char[100];
+	x[0] = 'a';
+	x[1] = '\0';
+	printf("%s",x);
 }
