@@ -10,17 +10,21 @@ public:
     String() : str(NULL), l(0){
 
     }
-    String(char *s)
+    String(const char *s)
     {
-        l = strlen(s);
         if(s)
         {
+            l = strlen(s);
             str = new char[strlen(s) + 1];
             strcpy(str, s);
+            str[strlen(s)] = '\0';
         }
         else
+        {
             str = NULL;
-        str[strlen(s)] = '\0';
+            l = 0;
+        }
+        
     }
     String(const String& other)
     {
@@ -38,17 +42,17 @@ public:
         delete [] str;
         l = 0;
     }
-    const unsigned int size()
+    unsigned int size() const
     {
         unsigned int i;
         if(str)
         {
-	        for(i = 0;;i++)
-	        {
-	            if(str[i] =='\0')
-	                break;
-	        }
-        	return i;
+            for(i = 0;;i++)
+            {
+                if(str[i] =='\0')
+                    break;
+            }
+            return i;
         }
         return 0;
     }
@@ -56,17 +60,23 @@ public:
     {
         unsigned int i;
         char *x;
-        x = new char[this->size() + strlen(other.str) + 1];
-        strcpy(x, str);
-        for(i = 0;i < strlen(other.str);i++)
+        if(other.str)
         {
-            x[this->size() + i] = other.str[i];
+            x = new char[l + other.l + 1];
+            if(str)
+                strcpy(x, str);
+            for(i = 0;i < other.l;i++)
+            {
+                x[l + i] = other[i];
+            }
+            x[l + other.l] = '\0';
+            delete [] str;
+            str = x;
+            l = l + other.l;
+            return *this;
         }
-        x[this->size() + strlen(other.str)] = '\0';
-        delete [] str;
-        str = x;
-        l = l + strlen(other.str);
-        return *this;
+        else
+            return *this;
     }
     String& operator= (const String& other)
     {
@@ -79,7 +89,7 @@ public:
         }
         if(other.str)
         {
-            str = new char[strlen(other.str) + 1];
+            str = new char[other.l + 1];
             strcpy(str, other.str);
         }
         else
@@ -87,56 +97,23 @@ public:
     }
     String& operator+= (const char *s)
     {
-        unsigned int i;
-        char *x; 
-        x = new char[this->size() + strlen(s) + 1];
-        strcpy(x, str);
-        for(i = 0;i < strlen(s);i++)
-        {
-            x[this->size() + i] = s[i];
-        }
-        x[this->size() + strlen(s)] = '\0';
-        delete [] str;
-        str = x;
-        l = l + strlen(s);
-        return *this; 
+        String A(s);
+        this->append(A);
+        return *this;
     }
     String operator+ (const char *s)
     {
-        unsigned int i;
-        
-        for(i = 0;i <= strlen(s);i++)
-        {
-            str[size() + i] = s[i];
-        }
-        str[size() + strlen(s)] = '\0';
-        l = l + strlen(s);
-        return *this;
+        String A(s);
+        String B(this->append(A));  
+        return B;
     }
     String operator+ (const String& other)
     {
-        unsigned int i;
-        char *x;
-        if(other.str)
-            x = new char[this->size() + strlen(other.str) + 1];
-        else
-            x = new char[this->size() + 1];
-        strcpy(x, str);
-        if(other.str)
-        {
-			for(i = 0;i < strlen(other.str);i++)
-			{
-			    x[this->size() + i] = other.str[i];
-			}
-        	x[this->size() + strlen(other.str)] = '\0';
-        }
-        else
-        	x[this->size()] = '\0';
-		String a(x);
-		delete [] x;
-        return a;
+        String A;
+        A = this->append(other);
+        return A;
     }
-    char& operator[] (const int i)
+    char& operator[] (const int i) const
     {
         return str[i];
     }
@@ -147,19 +124,8 @@ public:
             return false;
     }
     String& operator<< ( const String& other){
-        unsigned int i;
-        char *x;
-        x = new char[this->size() + strlen(other.str) + 1];
-        if(str)
-	        strcpy(x, str);
-        for(i = 0;i < strlen(other.str);i++)
-        {
-            x[this->size() + i] = other.str[i];
-        }
-        x[this->size() + strlen(other.str)] = '\0';
-        delete [] str;
-        str = x;
-        l = l + strlen(other.str);
+        String A(other);
+        this->append(A);
         return *this;
     }
     friend ostream& operator<< ( ostream& output, const String& other);
@@ -201,9 +167,6 @@ int main(){
     }
 
     a[0] = 't';
-
     cout << "a:" << a << "\n";
-
     return 0;
-
 }
