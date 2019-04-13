@@ -1,133 +1,53 @@
-#include <stdio.h>
 #include <iostream>
-#include <string.h>
-#include <assert.h>
 using namespace std;
-class String{
+class Complex {
 private:
-    char *str;
-    size_t length;
-public:
-    String() : str(NULL), length(0) {}
-
-    String(const char *s) : str(NULL), length(0) {
-        if (s == NULL)
-            return;
-        length = strlen(s);
-        str = new char[length + 1];
-        strcpy(str, s);
+    double real,imagine;    
+public: 
+    Complex(){
+        real = 0;
+        imagine = 0;
+}
+    Complex(const double r,const double i){
+        real = r;
+        imagine = i;
     }
-
-    String(const String& other) : str(NULL), length(0) {
-        if (other.str == NULL)
-        return;
-        length = other.length;
-        str = new char[length + 1];
-        strcpy(str, other.str);
-        return;
-
-}
-
- 
-    ~String() {
-        delete[] str;
-        length = 0;
-}
-
-String& append(const String &other) {
-    if (other.str == NULL)
-        return *this;
-    if (str == NULL) {
-        str = new char[other.length + 1];
-        length = other.length;
-        strcpy(str, other.str);
-        return *this;
+    Complex(const Complex& other){
+        real = other.real;
+        imagine = other.imagine;
+        
     }
-    char *temp = new char[length + other.length + 1];
-    strcpy(temp, str);
-    strcat(temp, other.str);
-//  strcpy(temp + length, other.str);
-    delete []str;
-    str = temp;
-    length += other.length;
-    return *this;
-
+Complex& operator=(const Complex& other){
+    if(this != &other)
+    real = other.real;
+    imagine = other.imagine;
+}   
+Complex operator+ (const Complex& other) const{
+    return Complex(real + other.real,imagine + other.imagine);
+}
+Complex operator- (const Complex& other) const{
+    return Complex(real - other.real,imagine - other.imagine);
 }
 
-
-String& operator= (const String&other) {
-    if (this == &other)
-        return *this;
-
-    delete[] str;
-    str = NULL;
-    length = 0;
-
-    if (other.str == NULL)
-        return *this;
-
-    str = new char[other.length + 1];
-    strcpy(str, other.str);
-    length = other.length;
-
-    return *this;
-    }
-String& operator+=(const String& other) {
-    return this->append(other);
+    friend Complex operator* (const Complex& , const Complex& );
+    friend ostream& operator<<( ostream& output ,const Complex&);
+}; 
+Complex operator* (const Complex& op1, const Complex& op2){
+    double s = op1.real*op2.real - op1.imagine*op2.imagine;
+    double x = op1.imagine*op2.real + op1.real*op2.imagine;
+    Complex c(s,x);
+    return c;}
+ostream& operator<<( ostream& output ,const Complex& c){
+    cout<< c.real <<" + "<< c.imagine <<" i\n";
+    return output;
 }
 
-String& operator<<(const String& other) {
-    return this->append(other);//return *this += other; 
-}
-
-String operator+(const String& other)const {
-    if (str == NULL)
-        return other;
-    if (other.str == NULL)
-        return *this;
-    String result(*this);
-    result += other;//result.length = length + other.length;          result.str = new char[length + other.length +1];            strcpy(result.str, str);    strcpy(result.str +length,other.str);          
-    return result;
-    }
-    char& operator[] (const int i) { 
-        assert(i >= 0 && i < length);
-        return str[i]; 
-    } 
-
-    bool isNull()const{
-        return str == NULL;
-    }
-friend ostream& operator <<(ostream& out, const String& str);
-};
-
- 
-ostream& operator <<(ostream& out, const String& str) {
-    if(str.str)
-        cout << str.str;
-    else
-        return out;
-    return out;
-}
 int main(){
-    String a("This is "), b(a);
-    String c;
-    cout << "a:" << a << "\n" << "b:" << b << "\n" << "c:" << c << "\n";
-    c = "a test.";
-    cout << "c:" << c << "\n";
-    a.append(c);
-    cout << "a:" << a << "\n";
-    {
-        String a("Hello"), b;
-        a += " World";
-        b  << (a + b);
-
-        cout << "b:" << b << "\n";
-        String c;
-        c = b + "!";
-
-        cout << "c:" << c << "\n";
-    }
-    a[0] = 't';
-    cout << "a:" << a << "\n";
+    Complex c1(4.234234, -27.6), c2(3.5, -4.7);
+    Complex c3, c4;
+    c3 = c2 + c1;
+    c4 = c3 * c1;
+    c2 = c4 - c1;
+    cout  << c1  << c2  << c3  << c4  << c1 - c4 ;
     return 0;
 }
