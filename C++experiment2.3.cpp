@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <iostream>
 #include <string.h>
+#include <assert.h>
 using namespace std;
 class String{
 private:
@@ -8,7 +9,6 @@ private:
     unsigned int l;
 public:
     String() : str(NULL), l(0){
-
     }
     String(const char *s)
     {
@@ -17,7 +17,6 @@ public:
             l = strlen(s);
             str = new char[strlen(s) + 1];
             strcpy(str, s);
-            str[strlen(s)] = '\0';
         }
         else
         {
@@ -26,9 +25,8 @@ public:
         }
         
     }
-    String(const String& other)
+    String(const String& other) : l(other.l)
     {
-        l = other.l;
         if(other.str)
         {
             str = new char[strlen(other.str) + 1];
@@ -58,21 +56,20 @@ public:
     }
     String& append(const String& other)
     {
-        unsigned int i;
         char *x;
+        l = other.l + l;
         if(other.str)
         {
             x = new char[l + other.l + 1];
             if(str)
-                strcpy(x, str);
-            for(i = 0;i < other.l;i++)
             {
-                x[l + i] = other[i];
+                strcpy(x, str);
+                strcat(x,other.str);
+                delete [] str;
             }
-            x[l + other.l] = '\0';
-            delete [] str;
+            else
+                strcpy(x, other.str);
             str = x;
-            l = l + other.l;
             return *this;
         }
         else
@@ -95,27 +92,20 @@ public:
         else
             str = NULL;
     }
-    String& operator+= (const char *s)
+    String& operator+= (const String& other)
     {
-        String A(s);
-        this->append(A);
-        return *this;
+        return this->append(other);
     }
-    String operator+ (const char *s)
+    String operator+ (const String& other) const
     {
-        String A(s);
-        String B(this->append(A));  
-        return B;
-    }
-    String operator+ (const String& other)
-    {
-        String A;
-        A = this->append(other);
+        String A(*this);
+        A += other;
         return A;
     }
     char& operator[] (const int i) const
     {
-        return str[i];
+        assert(i >= 0 && i < l);
+            return str[i];
     }
     bool isNull()const{
         if(str)
@@ -124,9 +114,7 @@ public:
             return false;
     }
     String& operator<< ( const String& other){
-        String A(other);
-        this->append(A);
-        return *this;
+        return this->append(other);
     }
     friend ostream& operator<< ( ostream& output, const String& other);
 };
