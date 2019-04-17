@@ -1,5 +1,5 @@
 #include <stdio.h>
- int main()
+int main()
 {
     int m,a[100],t,i=0,n=0,c,b,g=0;
     printf("Input:\nPlease input a number:\n");
@@ -17,7 +17,7 @@
         	for(c=1;c<=t;c++)
         	{
         		if(t%c==0)
-        		g++;
+        		  g++;
         	}
         	if(g==2)
         	{
@@ -30,11 +30,11 @@
     	else
 			for(i=0;i<n;i++)
 			{
-    			printf("%5d",a[i]);
-    			if(i==0)
-    			continue;
+                printf("%5d",a[i]);
+                if(i==0)
+                    continue;
 				if(i%15==0)
-    			printf("\n");
+                    printf("\n");
 			}
     }
 	return 0;
