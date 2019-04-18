@@ -1,11 +1,7 @@
 #include <iostream>
-
 #include <string>
-
 #include <stdio.h>
-
 using namespace std;
-
 class Person{
 protected:
     string name;
@@ -82,7 +78,10 @@ public:
         printf("Person(const Person&)\n");
 
     }
-
+    Person(const string& n)
+    {
+        name = n;
+    }
     ~Person(){
 
         printf("~Person()\n");
@@ -118,7 +117,7 @@ public:
     }
 
 };
-class National_Person : public Person{
+class National_Person : virtual public Person{
 private:
     string Nationality;
 public:
@@ -129,6 +128,7 @@ public:
     {
         cout << "National_Person(const string&, const string&, char, int, int, int)\n";
     }
+    National_Person(const string& na) : Nationality(na){}
     ~National_Person()
     {
         printf("~National_Person()\n");
@@ -148,8 +148,23 @@ public:
         cout << "Nationality:" << Nationality << '\n';
     }
 };
-
-class Student : public Person{
+class Chinese :  public National_Person{
+public:
+public:
+	Chinese() : National_Person("CHN"){}
+	Chinese(const string& n, char g, int y, int m, int d) :National_Person(n,"CHN",g,y,m,d){
+		printf("Chinese(const string&, char, int, int, int)\n");
+	}
+	~Chinese()
+	{
+		cout << "~Chinese()\n";
+	}
+	void printProperty()
+	{
+		National_Person::printProperty();
+	}
+};
+class Student : virtual public Person{
 private:
     string schoolName;
     string studentID;
@@ -193,53 +208,44 @@ public:
     void printProperty()
     {
         Person::printProperty();
-        cout << "SchoolName:" << schoolName << '\n';
-        cout << "StudentID:" << studentID << '\n';
+        cout << "School Name:" << schoolName << '\n';
+        cout << "Student ID:" << studentID << '\n';
         cout << "Grade:" << grade << '\n';
     }
 };
+class Chinese_Student :  public Student,public Chinese{
+private:
+public:
+	Chinese_Student() {
+		cout << "Chinese_Student()\n";
+	}
+	Chinese_Student(const string& name, char g,int y,int m,int d,const string& sname,const string& sID,int _grade) :
+	Student( name, g, y, m, d, sname, sID, _grade),Chinese(name, g, y, m, d), Person( name,g, y, m, d){
+		cout << "Chinese_Student(const string&, char, int, int, int, const string&, const string&, int)\n";
+	}
+	~Chinese_Student()
+	{
+		cout << "~Chinese_Student()\n";
+	}
+	void printProperty(){
+		Chinese::printProperty();
+		Student::printProperty();
+	}
+};
+int main() {
 
+    Chinese_Student chnStuDmm("丁濛", 'M', 1982, 5, 3, "ZJU", "3001112322", 2000);
 
-int main(){
+    cout << "Before:\n";
 
-    National_Person chnDmm ("丁濛", "CHN", 'M', 1982, 5, 3);
+    chnStuDmm.printProperty();
 
-    cout << "chnDmm:\n";
+    chnStuDmm.setName("Gavotte");
 
-    chnDmm.printProperty();
+    cout << "\nAfter:\n";
 
-    chnDmm.setNationality("USA");
+    chnStuDmm.printProperty();
 
-    chnDmm.setName("Dmm");
-
-    chnDmm.printProperty();
-
-
-
-    Student stuDmm("丁濛", 'M', 1982, 5, 3, "ZJU", "3001112322", 2000);
-
-    cout << "stuDmm:\n";
-
-    stuDmm.printProperty();
-
-    stuDmm.setSchoolName("THU");
-
-    stuDmm.setStudentID("2005016579");
-
-    stuDmm.printProperty();
-
-
-
-    Person dmm(stuDmm);
-
-    dmm.setName("Gavotte");
-
-    cout << "dmm:\n";
-
-    dmm.printProperty(); 
-
-    cout << "stuDmm:\n";
-
-    stuDmm.printProperty();
     return 0;
+
 }

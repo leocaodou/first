@@ -34,7 +34,7 @@ class National_Person : public Person{
 private:
 	string nat;
 public:
-	National_Person():nat('\0'){}
+	National_Person():nat(){}
 	National_Person(const string& n, const string& na, char g, int y, int m, int d) : Person( n, g, y, m, d),nat(na)
 	{
 		cout << "National_Person(const string&, const string&, char, int, int, int)\n";
