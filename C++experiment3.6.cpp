@@ -3,7 +3,7 @@
 #include <stdio.h>
 using namespace std;
 class Person{//Person基类,包含名字，性别，生日年月日
-protected://以下成员为保护修饰，作用是可以被其派生类直接使用
+protected:
 	string name;
 	char gender;
 	int year;
@@ -23,6 +23,10 @@ public:
 	{
 		printf("~Person()\n");
 	}
+	void setName(const string& n)
+	{
+		name = n;
+	}
 	virtual void printProperty()//虚函数，因为在基类与派生类都含有这个同名函数，方便以后用指针指向时，可以使用相应类的函数
 	{
 		cout << "Name:" << name << '\n';
@@ -40,34 +44,38 @@ public:
         cout << "Student()\n";
     }
     Student(const string& name, char g,int y,int m,int d,const string& sname,const string& sID,int _grade) : 
-    Person(name,g,y,m,d),schoolName(sname),studentID(sID),grade(_grade){
+    Person(name,g,y,m,d),schoolName(sname),studentID(sID),grade(_grade){//Student是person的派生类，因此对于有参的构造函数，需要使用传入的值对Person类进行有参的构造，剩下的对Student自己的成员初始化
         cout << "Student(const string&, char, int, int, int, const string&, const string&, int)\n";
     }
     ~Student()
     {
         cout << "~Student()\n";
     }
-    void setSchoolName(const string& N)
+    void foo()
+    {
+    	year = 0;
+    }
+    void setSchoolName(const string& N)//设置学校名的函数
     {
          schoolName = N;
     }
-    void setStudentID(const string& ID)
+    void setStudentID(const string& ID)//设置学生ID的函数
     {
         studentID = ID;
     }
-    void setGrade(int a)
+    void setGrade(int a)//设置成绩的函数
     {
         grade = a;
     }
-    void printSchoolName()
+    void printSchoolName()//输出学校名的函数
     {
         cout << schoolName << '\n'; 
     }
-    void printStudentID()
+    void printStudentID()//输出学生的ID的函数
     {
         cout << studentID << '\n'; 
     }
-    void printGrade()
+    void printGrade()//输出成绩的函数
     {
         cout << grade << '\n'; 
     }
@@ -84,7 +92,9 @@ int main(){
     Student lkh("LEO",'M', 1999, 10, 6,"BISTU","2018011252",100);
     cout << '\n';
     lkh.printProperty();
-
+    lkh.setName("Leocaodou");
+    lkh.printProperty();
+    Person *p = &lkh;
+    p->printProperty();
     return 0 ;
-
 }
