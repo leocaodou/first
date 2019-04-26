@@ -10,7 +10,9 @@ private:
 	int month;
 	int day;
 public:
-	Person() : name() ,gender('\0') ,year(1900),month(1),day(1){}
+	Person() : name() ,gender('\0') ,year(1900),month(1),day(1){
+        cout << "Person()\n";
+    }
 	Person(const string& n,const char a,const int y,const int m,const int d) :name(n) ,gender(a) ,year(y),month(m),day(d)
 	{
 		printf("Person(const string&, char, int, int, int)\n");
@@ -23,6 +25,10 @@ public:
 	{
 		printf("~Person()\n");
 	}
+    void setName(const string& n)//在基类中设置改名的函数
+    {
+        name = n;
+    }
 	virtual void printProperty()
 	{
 		cout << "Name:" << name << '\n';
@@ -30,8 +36,8 @@ public:
 		printf("Birthday:%d-%02d-%02d\n",year,month,day);
 	}
 };
-class National_Person : public Person{
-private:
+class National_Person : virtual public Person{//虚继承Person类，为了防止在构造Chinese_Student时构造出两个Person，无法达到修改名字的目的
+protected:
     string Nationality;
 public:
     National_Person() : Nationality() {
@@ -52,7 +58,6 @@ public:
     }
     void printNationality()
     {
-        Person::printProperty();
         cout << "Nationality:" << Nationality << '\n';
     }
     void printProperty()
@@ -61,7 +66,7 @@ public:
         cout << "Nationality:" << Nationality << '\n';
     }
 };
-class Chinese : public National_Person{
+class Chinese : public National_Person{//又National_Person到Chinese_Student继承是单线的，所以不会出现重复构造的情况，所以这里不需要加virtual
 public:
 public:
 	Chinese() : National_Person("CHN"){}
@@ -77,7 +82,7 @@ public:
 		National_Person::printProperty();
 	}
 };
-class Student : public Person{
+class Student : virtual public Person{//虚继承，理由同National_Person
 private:
     string schoolName;
     string studentID;
@@ -133,7 +138,7 @@ public:
 		cout << "Chinese_Student()\n";
 	}
 	Chinese_Student(const string& name, char g,int y,int m,int d,const string& sname,const string& sID,int _grade) :
-	Student( name, g, y, m, d, sname, sID, _grade),Chinese(name, g, y, m, d){
+	Person(name,g,y,m,d),Student( name, g, y, m, d, sname, sID, _grade),Chinese(name, g, y, m, d){//由于基类的Person和National_Person为虚继承，不会构造出Person类，所以需要在这里再次构造
 		cout << "Chinese_Student(const string&, char, int, int, int, const string&, const string&, int)\n";
 	}
 	~Chinese_Student()
@@ -141,16 +146,18 @@ public:
 		cout << "~Chinese_Student()\n";
 	}
 	void printProperty(){
-		Chinese::printProperty();
 		Student::printProperty();
+        cout << "Nationality:" << Nationality << '\n';
 	}
 };
 int main() {
 
-    Chinese_Student chnStuDmm("丁濛", 'M', 1982, 5, 3, "ZJU", "3001112322", 2000);
+    Chinese_Student chnStulkh("LEO", 'M', 1999, 10, 6, "BISTU", "2018011252", 100);
 
-    chnStuDmm.printProperty();
-
+    chnStulkh.printProperty();
+    chnStulkh.setName("Leocaodou");//直接调用基类Person类中的setName函数
+    cout << "\n\n\n";
+    chnStulkh.printProperty();
     return 0;
 
 }
