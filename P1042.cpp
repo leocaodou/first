@@ -16,20 +16,20 @@ int main()
 		{
 			x = 1;
 		}
-		if( c != 'E' && c != '\r' && x == 0)
+		if( c != 'E' && c != '\n' && x == 0)
 		{
 			a = a + c;
 		}
-		if(c == '\r' && x == 1)
+		if(c == '\n' && x == 1)
 			break;
 	}
 	if( a[0] == '\0')
 	{
 		cout << "0:0\n\n0:0";
 	}
-	for( i = 0; i < a.size();i++)
+	for( i = 0; i < a.length();i++)
 	{
-		if(i == a.size() - 1)
+		if(i == a.length() - 1)
 		{
 			if(a[i] == 'W')
 				m++;
@@ -73,9 +73,9 @@ int main()
 	cout << '\n';
 	m = 0;
 	n = 0;
-	for( i = 0; i < a.size();i++)
+	for( i = 0; i < a.length();i++)
 	{
-		if(i == a.size() - 1)
+		if(i == a.length() - 1)
 		{
 			if(a[i] == 'W')
 				m++;
@@ -116,5 +116,6 @@ int main()
 			}
 		}
 	}
+	cout << '\n';
 	return 0;
 }

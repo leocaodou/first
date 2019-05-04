@@ -25,6 +25,7 @@ public:
 	}
 	virtual void printProperty()
 	{
+		cout << "Person::printProperty()\n";
 		cout << "Name:" << name << '\n';
 		printf("Gender:%c\n",gender);
 		printf("Birthday:%d-%02d-%02d\n",year,month,day);
@@ -57,6 +58,7 @@ public:
     }
     void printProperty()
     {
+    	cout << "National_Person::printProperty()\n";
         Person::printProperty();
         cout << "Nationality:" << Nationality << '\n';
     }
@@ -74,6 +76,7 @@ public:
 	}
 	void printProperty()
 	{
+		cout << "Chinese::printProperty()\n";
 		National_Person::printProperty();
 	}
 };
