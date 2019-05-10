@@ -4,7 +4,7 @@ words = jieba.lcut(txt)
 counts1 = {}
 counts = {}
 biaodian =" …《》，、。？！；：“”‘’'\n\r-=—()（）.【】『』"
-name = ["宝玉","凤姐","贾母","王夫人","薛姨妈","贾琏","宝钗","黛玉","林黛玉","贾宝玉"]
+name = ["宝玉","凤姐","贾母","王夫人","薛姨妈","贾琏","宝钗","黛玉","林黛玉","贾宝玉","老太太","湘云","刘姥姥","薛蟠"]
 for word in words:
 	if word in biaodian:
 		word = '#'
@@ -48,7 +48,7 @@ while(True):
 		j = j + 1
 		if  j >= len(items) :
 			break
-	y1 = (float(count1) / float(count2) - 2)**2 + y1
+	y1 = 1 + y1
 	if o == 0:
 		print("\n",end = '')
 y1 = y1 / i
@@ -73,7 +73,7 @@ while(True):
 		j = j + 1
 		if  j >= len(items) :
 			break
-	y2 = (1/(float(count1) / float(count2)) - 2)**2 + y2
+	y2 = 1 + y2
 	if o == 0:
 		print("\n",end = '')
 y2 = y2 /i
