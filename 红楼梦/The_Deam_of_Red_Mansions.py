@@ -44,11 +44,12 @@ while(True):
 		if word1 == word2:
 			print("{0:<5}{1:>5}".format(word2, count2))
 			o = 1
-			break
+			break	
 		j = j + 1
 		if  j >= len(items) :
 			break
-	y1 = 1 + y1
+	if int(count1) / float(count2) > 2.5 or float(count1) / float(count2) < 1.5 :
+		y1 = y1 + 1
 	if o == 0:
 		print("\n",end = '')
 y1 = y1 / i
@@ -56,6 +57,7 @@ i = 0
 y2 = 0
 o = 0
 print("\n\n\n")
+print("后四十回       前八十回")
 while(True):
 	word1, count1 = items[i]
 	if(count1 < 50):
@@ -73,7 +75,8 @@ while(True):
 		j = j + 1
 		if  j >= len(items) :
 			break
-	y2 = 1 + y2
+	if int(count1) / float(count2) > (1) or float(count1) / float(count2) < (2/5) :
+		y2 = y2 + 1
 	if o == 0:
 		print("\n",end = '')
 y2 = y2 /i
