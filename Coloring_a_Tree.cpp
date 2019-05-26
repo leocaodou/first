@@ -19,7 +19,6 @@ int main()
 	{
 		if(b[a[i]] != b[i])
 			t++;
-		// cout << t;
 	}
 	cout << t << endl;
 	return 0;

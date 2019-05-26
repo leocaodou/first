@@ -41,6 +41,7 @@ int main()
 				{
 					char c = a[i] - k;
 					printf("%c",c);
+					k = 0;
 				}
 				else
 				{
