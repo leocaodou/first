@@ -5,11 +5,13 @@
 using namespace std;
 int main()
 {
-	int p1,p2,p3,j,i;
+	int p1,p2,p3,j;
+	unsigned int i;
 	cin >> p1 >> p2 >> p3;
 	string a;
 	cin >> a;
-	for(i = 0; i < a.length(); i++)
+	cout << a[0];
+	for(i = 1; i < a.length(); i++)
 	{
 		if(a[i] == '-' && a[i - 1] != '-')
 		{
@@ -20,10 +22,16 @@ int main()
 				}
 				else
 				{
-					for(j = 0; j < a[i + 1] - a[i - 1] - 1;j++)
+					if((!(a[i - 1] >= 48 &&a[i + 1] <= 57)&&!(a[i - 1] >= 65 &&a[i + 1] <= 90)&&!(a[i - 1] >= 97 &&a[i + 1] <= 122)))
+					{
+						cout << '-' << a[i + 1];
+						i = i + 1;
+					}
+					else for(j = 0; j < a[i + 1] - a[i - 1] - 1;j++)
 					{
 						if(p1 == 3)
-							cout << '*';
+							for(int k = 1;k <= p2;k++)
+								cout << '*';
 						if(p1 == 1)
 						{
 							if(p3 == 1)
@@ -115,7 +123,8 @@ int main()
 				for(j = 0; j < a[i + 2] - a[i] - 1;j++)
 				{
 					if(p1 == 3)
-						cout << '*';
+						for(int k = 1;k <= p2;k++)
+								cout << '*';
 					if(p1 == 1)
 					{
 						if(p3 == 1)
