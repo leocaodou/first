@@ -1,49 +1,138 @@
-#include<bits/stdc++.h>
+#include <stdio.h>
+#include <iostream>
+#include <string>
+#include <string.h>
+#include <algorithm>
+#include <assert.h>
 using namespace std;
-string a,b;     //a,b循环使用 
-int c,d,e,f[27],g[27],h,k,l[100],m,n,o;
-//c是有几个句子，d是题目给的复杂度是多少
-//e是当前在几重循环，f[]是判断变量是否使用过
-//g[]是存下每个循环的变量，h是当前复杂度是多少(与e不同)
-//k是判断下面程序是否进行，l[]是存下哪几个循环加了复杂度
-//m是当前最大复杂度，n是存下k=1时的循环数
-//o是数据组数 
-int main()
-{
-    cin>>o;    //读入数据组数 
-    while(o>0)
-    {
-        c=0;d=0;m=0;n=0;e=0;h=0;k=0;o--;      //初始化，剩余数据组数-1 
-        memset(f,0,sizeof(f));memset(l,0,sizeof(l));   //初始化 
-        do{a=b;cin>>b;} while(b[0]!='O');     //读入，当b[0]='O'时停下，保证ERR时下一个继续运行 
-        for(int i=0;i<a.length();i++) c=c*10+a[i]-'0';   //取出题目给的句子数量 
-        for(int i=4;i<b.length()-1;i++) d=d*10+b[i]-'0'; 
-        cout << d << endl; //取出题目给的时间复杂度 O(1)不影响 
-        while(c>0)
-        {
-            c--;cin>>a;   //读入F 或 E ,句子数-1
-            if(a[0]=='F')   //如果是F 
-            {
-                e++;cin>>a;   //当前循环数+1，读入变量 
-                if(f[a[0]-96]) e=-1;    //如果被用过，标记ERR 
-                else f[a[0]-96]=1,g[e]=a[0]-96;    //没用过就标记用过，并存起来 
-                cin>>a>>b;      //读入变量初值和末值 
-                if(a[0]!='n'&&b[0]=='n'&&k==0) h++,l[e]=1;   //如果a是数字，b是n，而且可以运行，那么当前复杂度+1，记下循环数 
-                else if(((a.length()==b.length()&&a>b)||(a.length()>b.length())||(a[0]=='n'&&b[0]!='n'))&&k==0) k=1,n=e;
-                //如果a>b(n 4,45 12,24 9),而且可以运行，那么标记下面的都不能运行，记下当前循环 
-                //像5 8，76 78, n n 之类的不影响，不需要处理 
-            }else
-            {      //如果是E 
-                m=max(m,h);f[g[e]]=0;     //将最大复杂度更改 ，变量标记没用过 
-                if(l[e]==1) h--,l[e]=0;    //如果当前循环加了复杂度，当前复杂度-1，标记清空 
-                e--;    //当前循环数-1 
-                if(n>0&&e<n) k=0,n=0;   //如果跳出了n标记的那个循环，那么接下来的循环可以运行，标记清空 
-            }
-            if(e==-1) printf("ERR\n"),c=-1;   //如果e<0(变量用过或者E过多)，那么输出ERR，跳出循环 
-        }
-        if(e>0) printf("ERR\n");    //如果e>0(F过量)，那么输出ERR，跳出循环 
-        if(e==0&&m==d) printf("Yes\n");   //如果F,E相同而且最大复杂度等于题目给的复杂度，输出Yes 
-        if(e==0&&m!=d) printf("No\n");    //如果F,E相同而且最大复杂度不等于题目给的复杂度，输出No 
+template<typename T>
+class Matrix2D {
+private:
+    T* _data;
+    int _row;
+    int _col;
+public:
+    Matrix2D ( int r, int c) : _data(NULL), _row(r), _col(c) {
+        if( r <= 0 || c <= 0)
+           	return;
+        _data = new T [r * c];
+        memset( _data,0, r * c * sizeof(T));
     }
-    return 0;
-}   //40行代码 
+    Matrix2D() : _data(NULL), _row(0), _col(0) {
+    }
+    Matrix2D (T* data, int r, int c) : _data(NULL), _row(r), _col(c){
+
+    	_data = new T [r * c];
+    	for(int i = 1;i <= r*c; i++)
+    	{
+    		_data[i] = data[i];
+    	}
+    }
+    template<typename F>
+    Matrix2D(const Matrix2D<F>& a) : _row(a._row), _col(a._col)
+    {
+    	_data = new T [_row*_row];
+    	for(int i = 0;i < _row*_row;i++)
+    		_data[i] = a._data[i];
+    }
+    ~Matrix2D()
+    {
+    	if(_data)
+    		delete [] _data;
+    }
+    static Matrix2D<T> diag(int n)
+    {
+    	Matrix2D<T> a;
+    	a._row = n;
+    	a._col = n;
+    	a._data = new T [n*n];
+    	for(int i = 1;i <= n*n; i++)
+    	{
+    		a._data[i] = 1;
+    	}
+    	return a;
+    }
+    void printMatrix() const {
+        for(int i = 0; i < _row; ++i) {
+           	int rowBase = i * _col;
+           	for(int j = 0; j < _col; ++j) {
+           	    	cout << * (_data + rowBase + j) <<" ";
+           	}
+           	cout << "\n";
+       	}
+
+    }
+    T* getDataPtr() {
+        return _data;
+    }
+    template<typename A>
+    const A& at (int a,int b)
+    {
+    	return (A)_data[(a - 1)*_row + b - 1];
+    }
+    Matrix2D<T>& operator*= (const Matrix2D<T>& a)
+    {
+    	Matrix2D c(_row,_row);
+    	assert(_row == _col && a._row == a._col && _col == a._col);
+		for(int i = 1;i <= a._row;i++)
+		{
+			for(int j = 1; j <= a._row;j++)
+			{
+				int b = 0;
+				for(int k = 1; k <= a._row;k++)
+				{
+					b = b + this->at<T>(i,k) * a.at<T>(k,j);
+				}
+				c.at<T>(i,j) = b;
+			}
+		}
+    	delete [] _data;
+    	_data = new T [_row*_row];
+    	for(int i = 0;i < _row*_row;i++)
+    		_data[i] = c._data[i];
+    	return *this;
+    } 
+};
+int main() {
+
+    float data [] = {1.3f, 1, 1, 1, 2.3f, 1, 1, 1, 3.3f};
+
+    Matrix2D<float> A(data, 3, 3);
+
+    A.printMatrix();
+
+    cout << "\n";
+
+    A *= Matrix2D<float>::diag(3);
+
+    A.printMatrix();
+
+    cout << "\n";
+
+    A.at<float> (0, 2) = 5.f;
+
+    Matrix2D<int>(A).printMatrix();
+
+    cout << "\n";
+
+    
+
+    float data1[] = {2.f,3.1f,4.98f};
+
+    Matrix2D<float> B(data1, 3, 1);
+
+    B.printMatrix();
+
+    cout << "\n";
+
+    A *= Matrix2D<float>(4,2);
+
+    A *= B;
+
+    A.printMatrix();
+
+    
+
+    return 1;
+
+}
