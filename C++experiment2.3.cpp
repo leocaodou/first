@@ -101,6 +101,12 @@ public:
         A += other;
         return A;
     }
+    template<typename T>
+    T& at(const int i)
+    {
+        assert(i >= 0 && i < l);
+            return str[i];
+    }
     char& operator[] (const int i) const//重载操作符[]，这样可以使得调用具体字符会方便很多
     {
         assert(i >= 0 && i < l);//加入了assert函数，来判断str[i]是否存在，不存在就返回错误报告
@@ -153,7 +159,7 @@ int main(){
 
     }
 
-    a[0] = 't';
+    a.at<char>(0) = 't';
     cout << "a:" << a << "\n";
     return 0;
 }
