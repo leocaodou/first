@@ -34,7 +34,7 @@ int main()
 			k = 0;
 			break;
 		}
-		s = a[i] * i + s;
+		s = a[i] + s;
 		k = k - a[i] * i;
 		if(k - b[i] * i < 0)
 		{
@@ -42,10 +42,11 @@ int main()
 			k = 0;
 			break;
 		}
-		s = b[i] * i + s;
+		s = b[i] + s;
 		k = k - b[i] * i;
 	}
-	if(k / 10 > c)
+	c = c + a[10];
+	if(k / 10 > c )
 		s = c + s;
 	else
 		s = k / 10 + s;
