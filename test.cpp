@@ -1,41 +1,44 @@
-#include <stdio.h>
-#include <iostream>
-#include <string>
-#include <algorithm>
+#include<bits/stdc++.h>
 using namespace std;
+#define LL long long 
+#define pii pair<int,int>
+vector<pair<int,int> >g[50005];
+bool vis[50005];
+pii dfs(int n){
+    vis[n]=1;
+    pii r=make_pair(n,0);
+    for(int i=0;i<g[n].size();++i){
+        pii p=g[n][i];
+        if(vis[p.first]) continue;
+        pii t=dfs(p.first);
+        if(p.second+t.second>r.second){
+            r=t;
+            r.second+=p.second;
+        }
+    }
+    return r;
+}
 int main()
 {
-	long long n,k,i,s = 0;
-	cin >> n >> k;
-	int a[11] = {0},c = 0;
-	for( i = 0; i < n;i++)
+    int i,j,t,n;
+    int u,v,w;
+    scanf("%d",&n);
+	int a[n-1];
+	for(i = 0;i < n - 1;i++)
 	{
-		int x;
-		cin >> x;
-		if(x == 100)
-		{
-			s = s + 10;
-			continue;
-		}
-		c = 9 - x/10 + c;
-		a[(x/10+1)*10-x]++;
+		cin >> a[i];
 	}
-	for(i = 1;i < 10 ;i++)
-	{
-		if(k - a[i] * i < 0)
-		{
-			s = k / i + s;
-			k = 0;
-			break;
-		}
-		s = a[i] + s;
-		k = k - a[i] * i;
-	}
-	c = a[10] + c;
-	if(k / 10 > c )
-		s = c + s;
-	else
-		s = k / 10 + s;
-	cout << s;
-	return 0;
+    for(i=1;i<=n;++i) g[i].clear();
+    for(i=1;i<n;++i)
+    {
+        scanf("%d%d%d",&u,&v,&w);
+        g[u].push_back(make_pair(v,w ));
+        g[v].push_back(make_pair(u,w + a[u - 1]));
+    }
+    int ans=-1;
+    memset(vis,0,sizeof(vis));
+    pii t1=dfs(1);
+    memset(vis,0,sizeof(vis));
+    cout<<dfs(t1.first).second<<endl;
+    return 0;
 }
