@@ -41,11 +41,11 @@ int main()
 					f++;
 					t = k;
 				}
-		if(k == y)
-		{
-			s = s + (x - f) * s;
-			break;
-		}
+		// if(k == y)
+		// {
+		// 	s = s + (x - f) * s;
+		// 	break;
+		// }
 		if(f == x)
 			break;
 	}

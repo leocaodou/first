@@ -4,6 +4,6 @@ def calcu_sub_str_num(mom_str,sun_str):
 		if mom_str[i:i+len(sun_str)] == sun_str:
 			count+=1
 	return count
-mom_str = "zura"
+mom_str = "lll"
 sun_str = input()
 print('%d'%calcu_sub_str_num(mom_str,sun_str))
