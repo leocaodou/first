@@ -14,7 +14,7 @@ public:
 };
 int main()
 {
-	int n;
+	int n,i;
 	cin >> n;
 	s a[n-1];
 	for(i = 0;i < n - 1;i++)
