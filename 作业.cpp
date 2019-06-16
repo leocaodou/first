@@ -8,7 +8,7 @@ int main()
 	if(b==1)
 	printf("是素数\n");
 	else
-	printf("不是素数\n");
+	printf("是素数才怪\n");
 }
 int su(int x)
 {
