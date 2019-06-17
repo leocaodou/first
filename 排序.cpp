@@ -3,7 +3,6 @@
 #include <algorithm>
 #include <cstdlib>
 using namespace std;
-
 struct qwq
 {
     int p1,p2;
