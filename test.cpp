@@ -1,44 +1,85 @@
-#include<bits/stdc++.h>
+#include<iostream>
+#include<stdio.h>
+#include<string>
 using namespace std;
-#define LL long long 
-#define pii pair<int,int>
-vector<pair<int,int> >g[50005];
-bool vis[50005];
-pii dfs(int n){
-    vis[n]=1;
-    pii r=make_pair(n,0);
-    for(int i=0;i<g[n].size();++i){
-        pii p=g[n][i];
-        if(vis[p.first]) continue;
-        pii t=dfs(p.first);
-        if(p.second+t.second>r.second){
-            r=t;
-            r.second+=p.second;
+struct Node{
+public:
+    int data;
+    Node*next;
+    friend ostream&operator<<(ostream&out, const Node&n);
+};
+ostream& operator<<(ostream&out, const Node&n) {
+    out << n.data;
+    return out;
+}
+class LinkedList{//构造空的链表类
+public:
+    Node*head;
+    LinkedList():head(NULL){}
+    void insertHead(int d) 
+    {//向链表中插入元素
+        Node *p;
+        p = new Node;
+        p->data = d;
+        p->next = head;
+        head = p;
+    }
+    void  remove(int a) {//删除每一个节点
+        Node *i;
+        for (i = head; i != NULL; i = i->next) {
+            if (i->next) {
+                if (i->next->data == a) {
+                    Node*p = i->next;
+                    i->next = p->next;
+                    delete p;
+                }
+            }
         }
     }
-    return r;
-}
-int main()
-{
-    int i,j,t,n;
-    int u,v,w;
-    scanf("%d",&n);
-	int a[n-1];
-	for(i = 0;i < n - 1;i++)
-	{
-		cin >> a[i];
-	}
-    for(i=1;i<=n;++i) g[i].clear();
-    for(i=1;i<n;++i)
-    {
-        scanf("%d%d%d",&u,&v,&w);
-        g[u].push_back(make_pair(v,w ));
-        g[v].push_back(make_pair(u,w + a[u - 1]));
+    Node* find(int d) {//寻找第一个数据为data的节点
+        Node*i;
+        for (i = head; i != NULL; i = i->next) {
+            if (i->data == d) {
+                return i;
+            }
+            else {
+                cout << "您所访问的数据不存在！";
+                return NULL;
+            }
+        }
     }
-    int ans=-1;
-    memset(vis,0,sizeof(vis));
-    pii t1=dfs(1);
-    memset(vis,0,sizeof(vis));
-    cout<<dfs(t1.first).second<<endl;
-    return 0;
+    void travalLsit(){ //遍历，访问链表中的所有节点
+        Node*i;
+        for (i=head; i!=NULL; i=i->next) 
+        {
+            cout << *i << ' ';
+        }
+        cout << endl; 
+    } 
+    bool  isEmpty() {//判断链表是否为空
+        if (head == NULL) {
+            cout << "EMPTY!" << endl;
+            return true;
+        }
+        else {
+            cout << "NOT EMPYT!" << endl;
+            return false;
+        }
+    }
+
+};
+int main(void)
+{
+    int i = 0;
+    LinkedList b;
+    for (i = 0; i < 10; i++)
+    {
+        b.insertHead(i);
+    }
+    b.isEmpty();
+    b.travalLsit();
+    b.find(100);
+    for (i; i < 10; i++) {
+        b.remove(i);
+    }
 }
