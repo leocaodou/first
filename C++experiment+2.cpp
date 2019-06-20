@@ -130,7 +130,10 @@ int main()
 		}
 		a.travalList();
 		if(k == 3)
+		{
 			a.deleteList();
+			break;
+		}
 		if(a.isEmpty())
 		{
 			cout << "a is empty" << endl;
