@@ -70,8 +70,8 @@ public:
 				}
 				else
 				{
-					x = 0;
 					a.d = a.d + x;
+					x = 0;
 				}
 			}
 		}
@@ -93,14 +93,6 @@ ostream& operator << (ostream& out ,const Date& n)
 }
 int main()
 {
-	int a, n;
-	double b;
-	cout << "请输入一个整数和一个小数" << endl;
-	cin >> a >> b;
-	cout << "你想要它们的多少次方" << endl;
-	cin >> n;
-	cout << "a的n次方为" << getPower(a,n) << endl;
-	cout << "b的n次方为" << getPower(b,n) << endl;
 	int ni,y,r,x;
 	cout << "请输入年月日" << endl;
 	cin >> ni >> y >> r;
