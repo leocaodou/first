@@ -1,64 +1,80 @@
-#include<iostream>
-#include<string>
-#include<stdio.h>
-#include<fstream>
-using namespace std;
-int main() {
-    
-    int a = 0;
-    int A = 0;
-    int n = 0;
-    int num = 0;
-    string str;
-    cout << "请输入字符串：\n";
-    cin >> str;//str.length str.at()
-    for (int i = 0; i <str.length();i++) {
-        if (str.at(i) >= 'a' && str.at(i) <= 'z')
-            a++;
-
-        else if (str.at(i) >= 'A' && str.at(i) <= 'Z')
-            A++;
-
-        else if (str.at(i) >= '0' && str.at(i) <= '9')
-            n++;
-
-        
+void get_information(LinkedList a) {//管理员录入用户信息
+    information*s;
+    string n,na,ke,id,tel;
+    double money;
+    cout << "请录入信息：" << endl << "账号：";
+    cin >> n;
+    cout << "用户名：";
+    cin >> na;
+    cout << "密码：";
+    cin >> ke;
+    cout << "身份证号：";
+    cin >> id;
+    cout << "电话号码：";
+    cin >> tel;
+    cout << "账户余额：";
+    cin >> money;
+    s = new information(n,na,ke,id,tel,money);
+    SYSTEMTIME sys;//导入系统当前时间
+    GetLocalTime(&sys);
+    cout << sys.wYear << "年";
+    cout << sys.wMonth << "月";
+    cout << sys.wDay << "日";
+    cout << sys.wHour << "时";
+    cout << sys.wMinute << "分";
+    cout << sys.wSecond << "秒";
+    cout << sys.wMilliseconds << "毫秒";
+    cout << ",星期" << sys.wDayOfWeek << endl;
+    cout << endl << "====================================信息录入成功===============================" << endl;
+    while (1) {
+        char ch;
+        a.insertHead(s);
+        cout << "是否继续录入信息：" << "1:是" << "   " << "2:否" << endl;
+        cin >> ch;
+        while (ch != '1'&&ch != '2') {
+            cout << "请重新输入是否继续录入信息！" << "1:是" << "  " << "2:否" << endl;
+            cin >> ch;
+        }
+        if (ch == '1') {
+            cout << "请输入注册信息：" << endl;
+            cout << "账号：" << endl;
+            string str111;//定义字符串
+            cin >> str111;//输入账号
+            int t;//判断账号是否存在
+            t = check_num(str111, a);//调用判断账号是否存在的函数
+            while (t == 1) {//t=1时
+                cout << "账号已存在，请重新注册！" << endl;
+                cout << "账号：" << endl;
+                cin >> str111;//重新输入账号
+                t = check_num(str111, a);
+            }
+            n = str111;//s的数据域值为新账号
+            cout << "用户名：";
+            cin >> na;
+            cout << "密码：";
+            cin >> ke;
+            cout << "身份证号:";
+            cin >> id;
+            cout << "电话号码:";
+            cin >> tel;
+            cout << "余额:";
+            cin >> money;
+            cout << endl;
+            s = new information(n,na,ke,id,tel,money);
+            a.insertHead(s);
+            SYSTEMTIME sys;
+            GetLocalTime(&sys);
+            cout << sys.wYear << "年";
+            cout << sys.wMonth << "月";
+            cout << sys.wDay << "日";
+            cout << sys.wHour << "时";
+            cout << sys.wMinute << "分";
+            cout << sys.wSecond << "秒";
+            cout << sys.wMilliseconds << "毫秒";
+            cout << ",星期" << sys.wDayOfWeek << endl;
+        }
+        else
+            break;
+        cout << endl << "====================================信息录入成功===============================" << endl;
     }
-    num = a + A + n;
-    //cout << a << ' ' << A << ' ' << n << ' ' << num << " "<<endl;
-
-    //string str1;
-    //cin >> str1;
-    //str1 = str1 + str;
-    int Array[] = { a,A,n,num };
-    string c;
-	int x[4];
-    fstream file("test.txt", ios::out | ios::binary);
-    if (!file) {//验证打开没 
-        cout << "Error opening file.";
-        return 0;
-    }
-    file.write((char *)&(Array), sizeof(int[4]));//写入文件 out.write((char *)&a, sizeof(int))
-    file.write((char *)&(str), sizeof(str));
-    file.close();
-
-    ifstream file2("test.txt", ios::in | ios::binary);
-    file2.read((char *) &x, sizeof(x));
-    cout << x[0]<<' '<<x[1]<<' '<<x[2]<<' '<<x[3]<<endl;
-    file2.read((char *) &c, sizeof(str));//读取文件 reinterpret_cast 可用于强制编译器解释一个类型的位
-    cout << c;
-    //printf("%s", c);
-    //file.read((char *) &str, sizeof(str));
-    /*for (int i = 0; i < 4+ str.length(); ++i) {
-        cout << Array[i] << " ";
-    }*/
-    
-
-
-    file.close();
-    //getchar();
-    //getchar();
-    return 0;
-
-
 }

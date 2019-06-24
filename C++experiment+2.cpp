@@ -64,7 +64,7 @@ public:
 				return i;//找到的话就返回这个地址
 			}
 		}
-		cout << "not find";
+		cout << "not find" << endl;
 		return NULL;
 	}
 	void travalList()//遍历链表所有的元素，并输出
@@ -126,7 +126,8 @@ int main()
 			cout << "想要查找哪个？" << endl;
 			cin >> n;
 			node* p = a.find(n);
-			cout << *p << endl << "地址是" << p << endl;
+			if(p)
+				cout << *p << endl << "地址是" << p << endl;
 		}
 		a.travalList();
 		if(k == 3)
