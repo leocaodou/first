@@ -513,14 +513,14 @@ int main()
 				date B(m,d,j);
 				QWQ f[kc];//把所有的课程及其数据放入数组
 				node<ke>* ji = k.head;
-				for(int i = 0;i < st;i++)//开始录入数据
+				for(int i = 0;i < kc;i++)//开始录入数据
 				{
 					f[i].name = ji->data.n;
 					f[i].c = ji->data.ci(A,B);
 					ji = ji->next;
 				}
-				sort(f,f + st,cmp);
-				for(int i = 0;i < st;i++)
+				sort(f,f + kc,cmp);
+				for(int i = 0;i < kc;i++)
 				{
 					cout << f[i].name <<"课在所给时间内有" << f[i].c << "人缺课" << endl;
 				}
