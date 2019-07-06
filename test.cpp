@@ -4,7 +4,7 @@
 using namespace std;
 int main()
 {
-    double a =22;
+    char a =22;
     char b;
     if(a)
         a = 2;
