@@ -3,7 +3,7 @@
 #include <time.h>
 #include <stdlib.h>
 #include <string.h>
-
+#include <algorithm>
 typedef struct  p{
     float hp = 100;
     float mp = 0;
