@@ -4,7 +4,7 @@ int main()
 	float x,y;
 	scanf("%f",&x);
 	if(x<1)
-	y=x*x;
+	y=x*x*x;
 	if(x>=1&&x<10)
 	y=5*x-1;
 	if(x>=10)
