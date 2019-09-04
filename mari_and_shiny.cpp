@@ -3,7 +3,7 @@
 #include <string>
 #include <math.h>
 #include <algorithm>
-using namespace std;
+using namespace std;160 140 30 20 10
 int main()
 {
 	int n,i,x = 0,y = 0;

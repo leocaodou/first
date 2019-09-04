@@ -1,10 +1,9 @@
 #include<stdio.h>
+int a[1000000];
 int main()
 {
-	int n,m,i,j,k,t,p=0,l;
-	scanf("%d",&n);
+	int n = 1,m,i,j,k,t,p=0,l;
 	int b[n+1]={0};
-	int a[1000000];
 	for(i=1;i<=n;i++)
 	{
 		scanf("%d",&m);
@@ -48,6 +47,6 @@ int main()
 		b[i]=p;
 	}
 	for(i=1;i<=n;i++)
-		printf("%d\n",b[i]);
+		printf("%d\n",(180 - b[i]) * 2);
 	return 0;
 }
