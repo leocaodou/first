@@ -4,7 +4,7 @@ using namespace std;
 int main()
 {
 	int n,i;
-	cin >> n;
+	scanf("%d",&n);
 	int a[n][4];
 	for(i = 0; i < n; i++)
 	{
