@@ -1,9 +1,12 @@
 #include<stdio.h>
+#include <algorithm>
+#include<iostream>
 #include<math.h>
+using namespace std;
 int main()
 {
 	double a,b,x;
-	scanf("%lf",&a);
+	cin >> a;
 	x=a/2;
 	b=x;
 	while(1)
