@@ -13,21 +13,23 @@ public:
 	a(const a& other) : l(l) {
 		d = other.d;
 	}
-bool operator <(const a&o)
+bool operator < (const a&o)
 {
 	if(l < o.l)
 		return true;
 	if(l > o.l)
 		return false;
 	else
+	{
 		for(int i = 0;i < l;i++)
 		{
 			if(d[i] < o.d[i])
 				return true;
 			if(d[i] > o.d[i])
 				return false;
-			return false;
 		}
+		return false;
+	}
 }
 };
 istream& operator >> (istream& in, a& other) 
@@ -62,6 +64,6 @@ int main()
 			y = i;
 		}
 	}
-	cout << y << endl;
+	cout << y + 1 << endl;
 	cout << max.d;
 }
