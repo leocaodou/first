@@ -2,7 +2,7 @@
 int main()
 {
 	int n,i,a,b,c,d,e,f;
-	printf("input number of test:\n"); 
+	printf("Input number of test:\n"); 
 	scanf("%d",&n);
 	for(i=1;i<=n;i++)
 	{
