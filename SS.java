@@ -13,7 +13,7 @@ class Student
 	}
 	public String toString()
 	{
-		return "学号 " + no + "\n姓名 " + name + "\n面时成绩 " + score.mianShi + "\n笔试成绩 " + score.biShi +"\n总成绩" + score.getTotalScore();
+		return "学号 " + no + "\n姓名 " + name + "\n面试成绩 " + score.mianShi + "\n笔试成绩 " + score.biShi +"\n总成绩" + score.getTotalScore();
 	}
 }
 class Score
