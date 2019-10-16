@@ -204,6 +204,8 @@ int main()
 {
 	string a;
 	cin >> a;
+	cout << a << '=';
+	a = a + '#';
 	evaluate(a);
 	return 0;
 }
