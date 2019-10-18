@@ -20,5 +20,6 @@ int main()
 			k ++;
 		}
 	}
+	k++;
 	cout << k;
 }
