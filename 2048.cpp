@@ -1,342 +1,239 @@
-#include <iostream>
-#include <vector>
-#include <string>
-#include <curses.h>
-#include <cstdlib>
-#include <cstdio>
-#include <ctime>
-
+#include<iostream>
+#include<stdlib.h>
+#include<time.h>
+#include<stdio.h>
+#include<string.h>
+#include<conio.h>
+#include<math.h>
 using namespace std;
-
-//¸ñ×Óºá×İÊıÄ¿ºÍ¿í¶È
-#define   N    4
-#define WIDTH  5
-
-//ÉèÖÃ³õÊ¼»¯ĞÂÊı×Ö¸öÊı
-#define STNUM   1
-
-//ÉèÖÃÓÎÏ·Ê¤ÀûÌõ¼ş
-#define TARGET  2048
-
-//×´Ì¬±í
-#define WIN  0
-#define LOSE 1
-#define NORM 2
-#define QUIT 3
-
-//2048Àà¶¨Òå
-class Game2048
-{
-public:
-	Game2048() {
-		setData();
+int button=0,maxn=0;//æ¸¸æˆå¼€å§‹
+int square[6][6];//æ¸¸æˆæ ¼å­
+int aa[6],bb[6];
+int score=0,sco=0;
+void outt_little(){
+	int i,a=0,b=0,c=0,d=0;
+	printf("â•”â•â•â•â•â•¦â•â•â•â•â•¦â•â•â•â•â•¦â•â•â•â•â•—\n");
+		{i=1;a=square[i][1]; b=square[i][2]; c=square[i][3]; d=square[i][4];}
+	printf("â•‘%4dâ•‘%4dâ•‘%4dâ•‘%4dâ•‘\n",a,b,c,d);
+	printf("â• â•â•â•â•â•¬â•â•â•â•â•¬â•â•â•â•â•¬â•â•â•â•â•£\n");
+		{i=2;a=square[i][1]; b=square[i][2]; c=square[i][3]; d=square[i][4];}
+	printf("â•‘%4dâ•‘%4dâ•‘%4dâ•‘%4dâ•‘\n",a,b,c,d);
+	printf("â• â•â•â•â•â•¬â•â•â•â•â•¬â•â•â•â•â•¬â•â•â•â•â•£\n");	
+		{i=3;a=square[i][1]; b=square[i][2]; c=square[i][3]; d=square[i][4];}
+	printf("â•‘%4dâ•‘%4dâ•‘%4dâ•‘%4dâ•‘\n",a,b,c,d);
+	printf("â• â•â•â•â•â•¬â•â•â•â•â•¬â•â•â•â•â•¬â•â•â•â•â•£\n");
+		{i=4;a=square[i][1]; b=square[i][2]; c=square[i][3]; d=square[i][4];}
+	printf("â•‘%4dâ•‘%4dâ•‘%4dâ•‘%4dâ•‘\n",a,b,c,d);
+	printf("â•šâ•â•â•â•â•©â•â•â•â•â•©â•â•â•â•â•©â•â•â•â•â•\n");
+}
+ 
+void outt_mid(){
+	int i,j,a,b,c,d;
+	char str[10];
+	sprintf(str,"%d",a);		
+	printf("â•”â•â•â•â•â•â•â•¦â•â•â•â•â•â•â•¦â•â•â•â•â•â•â•¦â•â•â•â•â•â•â•—\n");
+	printf("â•‘      â•‘      â•‘      â•‘      â•‘\n");
+	j=1;
+	for(int i=1;i<=3;i++)	
+		if(square[j][i]==0)  printf("â•‘      "); 
+						else printf("â•‘%5d ",square[j][i]);
+	if(square[j][4]==0) printf("â•‘      â•‘\n");
+						else printf("â•‘%5d â•‘\n",square[j][4]);
+	printf("â• â•â•â•â•â•â•â•¬â•â•â•â•â•â•â•¬â•â•â•â•â•â•â•¬â•â•â•â•â•â•â•£\n");
+	printf("â•‘      â•‘      â•‘      â•‘      â•‘\n");
+	j=2;
+	for(int i=1;i<=3;i++)	
+		if(square[j][i]==0)  printf("â•‘      "); 
+						else printf("â•‘%5d ",square[j][i]);
+	if(square[j][4]==0) printf("â•‘      â•‘\n");
+						else printf("â•‘%5d â•‘\n",square[j][4]);
+	printf("â• â•â•â•â•â•â•â•¬â•â•â•â•â•â•â•¬â•â•â•â•â•â•â•¬â•â•â•â•â•â•â•£\n");
+	printf("â•‘      â•‘      â•‘      â•‘      â•‘\n");
+	j=3;
+	for(int i=1;i<=3;i++)	
+		if(square[j][i]==0)  printf("â•‘      "); 
+						else printf("â•‘%5d ",square[j][i]);
+	if(square[j][4]==0) printf("â•‘      â•‘\n");
+						else printf("â•‘%5d â•‘\n",square[j][4]);
+	printf("â• â•â•â•â•â•â•â•¬â•â•â•â•â•â•â•¬â•â•â•â•â•â•â•¬â•â•â•â•â•â•â•£\n");
+	printf("â•‘      â•‘      â•‘      â•‘      â•‘\n");
+	j=4;
+	for(int i=1;i<=3;i++)	
+		if(square[j][i]==0)  printf("â•‘      "); 
+						else printf("â•‘%5d ",square[j][i]);
+	if(square[j][4]==0) printf("â•‘      â•‘\n");
+						else printf("â•‘%5d â•‘\n",square[j][4]);
+	printf("â•šâ•â•â•â•â•â•â•©â•â•â•â•â•â•â•©â•â•â•â•â•â•â•©â•â•â•â•â•â•â•\n");
+ 
+}
+ 
+void intt(){
+	int n,m,numb;
+	memset(square,0,sizeof(square));
+	srand(time(NULL));
+	n = rand() % 3 + 1;
+	m = rand() % 3 + 1;
+	while(square[n][m]!=0)
+	{
+		n = rand() % 4 + 1;
+		m = rand() % 4 + 1;
 	}
-
-	//»ñÈ¡ÓÎÏ·×´Ì¬
-	int getStatus() {
-		return status;
+	numb=rand() % 2 + 1;
+	button++;
+	square[n][m]=numb;
+}
+ 
+void add_num(){
+	int n,m,numb;
+	n = rand() % 3 + 1;
+	m = rand() % 3 + 1;
+	while(square[n][m]!=0)
+	{
+		n = rand() % 4 + 1;
+		m = rand() % 4 + 1;
 	}
-	
-	//»ñÈ¡ÓÃ»§ÊäÈë£¬ÉèÖÃ×´Ì¬
-	void getChar() {
-		char ch = getch();
-		if (ch>='a' && ch<='z')
-			ch = ch - 32;
-
-		//ÉÏÏÂ×óÓÒÒÆ¶¯½øĞĞÓÎÏ·
-		if (status == NORM) {
-			//×´Ì¬¸üĞÂ
-			bool update = false;
-			if (ch == 'A') {
-				update = moveLeft();
-			} else if (ch == 'S') {
-				rotate();
-				update = moveLeft();
-				rotate();
-				rotate();
-				rotate();
-			} else if (ch == 'D') {
-				rotate();
-				rotate();
-				update = moveLeft();
-				rotate();
-				rotate();
-			} else if (ch == 'W') {
-				rotate();
-				rotate();
-				rotate();
-				update = moveLeft();
-				rotate();
-			}
-
-			if (update) {
-				randNew(STNUM);
-				if (isOver()) {
-					status = LOSE;
-				}
-			}
-		}
-		
-		//ÍË³öºÍË¢ĞÂ
-		if (ch == 'Q')
-			status = QUIT;
-		else if (ch == 'R')
-			restart();
-		else if (ch == 'N')
-			dataSave();
-		else if (ch == 'M')
-			dataLoad();
-	}
-
-	//»æÖÆÓÎÏ·½çÃæ
-	void draw() {
-		clear();                    //ÇåÀíÆÁÄ»
-        const int xoffset = 5;     //ÉèÖÃºáÆ«ÒÆÁ¿
-		const int yoffset = 40;     //ÉèÖÃ×İÆ«ÒÆÁ¿
-
-		//»æÖÆÅ¼ÊıĞĞ£¬È«ÖÃÎª¡®-¡¯ºóÔÙ²¿·ÖÌæ»»Îª¡®+¡¯
-		for (int i = 0; i <= N; i++) {
-			for (int j = 0; j < N*WIDTH; j++) {
-				mvaddch(2*i + xoffset, j + yoffset, '-');
-			}
-			for (int j = 0; j <= N; j++) {
-				mvaddch(2*i + xoffset, j*WIDTH + yoffset, '+');
-			}
-		}
-
-		//»æÖÆÆæÊıĞĞ£¬Êı×ÖÓÒ¶ÔÆë
-		for (int i = 0; i < N; i++) {
-			for (int j = 0; j < N; j++) {
-				mvaddch(2*i + 1 + xoffset, j*WIDTH + yoffset, '|');	
-				drawNum(2*i + 1 + xoffset, (j+1)*WIDTH + yoffset, data[i][j]);
-			}	
-			mvaddch(2*i + 1 + xoffset, N*WIDTH + yoffset, '|');	
-		}
-		
-		//»æÖÆÓÎÏ·²Ù×÷·½·¨¼°µÃ·Ö
-		string strOperate = "W(UP),S(DOWN),A(LEFT),D(RIGHT),R(RESTART),N(SAVE),M(LOAD),Q(QUIT)";
-		mvprintw(2*N + 3 + xoffset, N/2*WIDTH + yoffset - strOperate.length()/2, strOperate.data());
-
-		//»æÖÆµÃ·Ö¼°×î¸ß·Ö
-		mvprintw(N/2 + xoffset, yoffset/4, (" max:  "+to_string(max)).data());
-		mvprintw(3*N/2 + xoffset, yoffset/4, ("score: "+to_string(score)).data());
-
-		//»æÖÆ×´Ì¬ĞÅÏ¢
-		string strStatus;
-		if (status == WIN)
-			strStatus = "YOU  WIN";
-		if (status == LOSE)
-			strStatus = "YOU LOSE";
-		mvprintw(2*N + 6 + xoffset, N/2*WIDTH + yoffset - strStatus.length()/2, strStatus.data());
-		
-		//³õ´ÎÌáĞÑÓÃ»§ÊäÈëR
-		if (status != NORM) {
-			string strStart = "PRESS R TO START !";
-			mvprintw(2*N + 7 + xoffset, N/2*WIDTH + yoffset - strStart.length()/2, strStart.data());
-			start = false;
-		}
-	}
-
-
-
-
-private:
-	int data[N][N];
-	int save[N][N];
-	int status = -1;
-	int score = 0;
-	int Score = 0;
-	int max = 0;
-	bool start = true;
-
-	//Àà³õÊ¼»¯Ê±ÓÎÏ·½çÃæÊı×Ö
-	void setData() {
-		for (int i = 0; i < N; i++) {
-			for (int j = 0; j < N; j++) {
-				data[i][j] = 0;
-				save[i][j] = 0;
-			}
-		}
-	}
-
-	//ÓÒ¶ÔÆë»æÖÆÊı×Ö
-	void drawNum(int x, int y, int num) {
-		while (num > 0){
-			mvaddch(x, --y, num%10+'0');
-			num = num / 10;
-		}
-	}
-
-	//ÖØĞÂ¿ªÊ¼ÓÎÏ·ÉèÖÃ
-	void restart() {
-		for (int i = 0; i < N; i++) {
-			for (int j = 0; j < N; j++) {
-				data[i][j] = 0;
-			}
-		}
-
-		//³¬³ö·¶Î§×Ô¶¯ÉèÖÃÎª1
-		if (STNUM>=N*N || STNUM<0)
-			randNew(1);
-		else
-			randNew(STNUM);
-		
-		score = 0;
-		status = NORM;
-	}
-
-	//Ëæ»ú²úÉúÈÎÒâ¸öÊı×Ö
-	bool randNew(int num) {
-		for (int cnt = 0; cnt < num; cnt++) {
-			vector <int> emptyPos;
-			for (int i = 0; i < N; i++) {
-				for (int j = 0; j < N; j++) {
-					if (data[i][j] == 0)
-						emptyPos.push_back(i*N+j);
-				}
+	numb=rand() % 2 + 1;
+	square[n][m]=numb;
+	button++;
+}
+char check(){
+	int ch;
+	while( (ch=getch())!=0x1B ) /* Press ESC to quit... */
+    {
+      switch(ch)
+      {
+      case 0xE0:
+         switch(ch=getch())
+         {
+            case 72:  return('u');break;
+            case 80:  return('d');break;
+            case 75:  return('l');break;
+            case 77:  return('r');break;
+            default:
+               break;
+         }
+         break;
+      default:
+         break;
+      }
+   }
+}
+ 
+void run(char x){
+	int count1,count;//scoåˆ†æ•°ï¼› 
+	sco=0;
+	memset(aa,0,sizeof(aa));
+	memset(bb,0,sizeof(bb));
+	if(x=='l'||x=='r')
+	for(int i=1;i<=4;i++)
+	{
+		count1=0;
+		for(int j=1;j<=4;j++) 
+			if (square[i][j]!=0) 
+			{
+				count1++;
+				aa[count1]=square[i][j];
 			}
 			
-			if (emptyPos.size() == 0)
-				return false;
-
-			int pos = emptyPos[rand()%emptyPos.size()];
-			data[pos/N][pos%N] = (rand()%10==0 ? 4:2);
+		int l=1;
+		int r=1;
+		count=0;
+		while(l<=count1)
+		{
+			if (aa[r]==aa[r+1]) r++;
+			count++;
+			bb[count]=(r-l+1)*aa[l];
+			maxn=max(maxn,bb[count]);
+			if(r>l) sco=sco+bb[count];
+			l=r+1;
+			r++;
 		}
-
-		return true;
+		for(int j=1;j<=4;j++)
+			square[i][j]=0;
+		if (x=='l') 
+			for(int j=1;j<=count;j++)
+				square[i][j]=bb[j];
+		if (x=='r') 
+			for(int j=1;j<=count;j++)
+				square[i][4-j+1]=bb[count-j+1];	
+		button=button-count1+count;			
 	}
-
-	//ÓÎÏ·×óÒÆ²Ù×÷
-	bool moveLeft() {
-		int compare[N][N];
-		for (int i = 0; i < N; i++) {
-			int cur = 0;         //±È½ÏÖµ
-			int pos = 0;         //´æ·ÅÎ»ÖÃ
-
-			for (int j = 0; j < N; j++) {
-				compare[i][j] = data[i][j];
-
-				//´Ó²»Îª0µÄÎ»ÖÃ¿ªÊ¼
-				if (data[i][j] == 0)
-					continue;
+	if(x=='u'||x=='d')
+	for(int i=1;i<=4;i++)
+	{
+		count1=0;
+		for(int j=1;j<=4;j++) 
+			if (square[j][i]!=0) 
+			{
+				count1++;
+				aa[count1]=square[j][i];
+			}
+			
+		int l=1;
+		int r=1;
+		count=0;
+		while(l<=count1)
+		{
+			if (aa[r]==aa[r+1]) r++;
+			count++;
+			bb[count]=(r-l+1)*aa[l];
+			maxn=max(maxn,bb[count]);
+			if(r>l) sco+=bb[count];
+			l=r+1;
+			r++;
+		}
+		for(int j=1;j<=4;j++)
+			square[j][i]=0;
+		if (x=='u') 
+			for(int j=1;j<=count;j++)
+				square[j][i]=bb[j];
+		if (x=='d') 
+			for(int j=1;j<=count;j++)
+				square[4-j+1][i]=bb[count-j+1];	
+		button=button-count1+count;		
+	}
+	score=sco+score;
+	
+} 
+ 
+bool check_fail(){
+	for(int i=1;i<=4;i++)
+		for(int j=1;j<=3;j++)
+			if (square[i][j]==square[i][j+1]) return true;
+	for(int i=1;i<=4;i++)
+		for(int j=1;j<=3;j++)
+			if (square[j][i]==square[j+1][i]) return true;
+	return(false);
+}
+ 
+int main(){
+	system("mode con cols=30 lines=16");
+	system("COLOR 73");
+	intt();
+	while (button<=16)
+	{
+		if (button==16)
+			if(!(check_fail())) break;
+		outt_mid();//è¾“å‡º 
+		cout<<"max = "<<maxn<<endl;
+		cout<<"score = "<<score<<endl;
+		if(maxn>=2048) cout<<"Congratulations! You are win!"<<endl;
+		char ch=check();//è¯»å…¥æ–¹å‘é”® 
 		
-				//´Ócur²»Îª0¿ªÊ¼±È½ÏÇóºÍ
-				if (cur == 0) {
-					cur = data[i][j];
-				}else {
-					if (data[i][j] == cur) {
-						data[i][pos] = cur<<1;
-						score += data[i][pos];
-						cur = 0;
-						if (data[i][pos] == TARGET)
-							status = WIN;
-						if (max <= score)
-							max = score;
-					}else {
-						data[i][pos] = cur;
-						cur = data[i][j];
-					}
-
-					//´æ·ÅÎ»ÖÃÓÒÒÆÒ»Î»
-					pos++;
-				}
-
-				//ÒÑ¾­Ïò×óÌí¼Ó£¬´ËÎ»ÖÃÖØÉèÎª0
-				data[i][j] = 0;
-			}
-
-			//±È½ÏÖµ²»Îª0Ôò·ÅÈë
-			if (cur != 0)
-				data[i][pos] = cur;
+		switch(ch){
+			case 'l':run('l');break;
+			case 'r':run('r');break;
+			case 'd':run('d');break;
+			case 'u':run('u');break;
 		}
-
-		for (int i = 0; i < N; i++) {
-			for (int j = 0; j < N; j++) {
-				if (compare[i][j] != data[i][j])
-					return true;
-			}
-		}
-		return false;
+		if(button<16) add_num();
+		system("cls");//æ¸…é™¤
 	}
-
-	//Ë³Ê±ÕëĞı×ª90¶È
-	void rotate() {
-		int tempdata[N][N];
-		for (int i = 0; i < N; i++) {
-			for (int j = 0; j < N; j++) {
-				tempdata[i][j] = data[N-j-1][i];
-			}
-		}
-
-		for (int i = 0; i < N; i++) {
-			for (int j = 0; j < N; j++) {
-				data[i][j] = tempdata[i][j];
-			}
-		}
+	
+	if (button==16) {
+		outt_mid();
+		cout<<"Sorry!You are failed."<<endl;
 	}
-
-	//ÅĞ¶ÏÓÎÏ·ÊÇ·ñ½áÊø
-	bool isOver() {
-		for (int i = 0; i < N; i++) {
-			for (int j = 0; j < N; j++) {
-				if (data[i][j] == 0)
-					return false;
-				if (i+1<N && data[i][j]==data[i+1][j])
-					return false;
-				if (j+1<N && data[i][j]==data[i][j+1])
-					return false;
-			}
-		}
-		return true;
-	}
-
-	//¼ÇÂ¼µ±Ç°ÓÎÏ·¼ÇÂ¼
-	void dataSave() {
-		for (int i = 0; i < N; i++) {
-			for (int j = 0; j < N; j++) {
-				save[i][j] = data[i][j];
-			}
-		}
-		Score = score;
-	}
-
-	//¶ÁÈ¡Ö®Ç°ÓÎÏ·¼ÇÂ¼
-	void dataLoad() {
-		for (int i = 0; i < N; i++) {
-			for (int j = 0; j < N; j++) {
-				data[i][j] = save[i][j];
-			}
-		}
-		score = Score;
-		status = NORM;
-	}
-};
-
-
-// ³õÊ¼»¯¼°ÉèÖÃncurses
-void initialize() {
-    initscr();            //³õÊ¼»¯ncurses
-    cbreak();             //ÉèÖÃ°´¼üÖ±½Ó½»»¥
-    noecho();             //ÉèÖÃ°´¼ü²»»ØÏÔ
-    curs_set(0);          //ÉèÖÃ¹â±ê²»¿É¼û
-    srand(time(NULL));    //ÉèÖÃËæ»úÊı
+	while(1);
+	return 0;
 }
-
-// »Ö¸´ncurses×´Ì¬
-void shutdown() {
-    endwin();              //»Ö¸´ÖÕ¶Ë»ú×´Ì¬        
-}
-
-
-int main() {
-    initialize();
-
-	Game2048 game;
-    do {
-		game.draw();
-		game.getChar();
-	}while(game.getStatus() != QUIT);
-
-    shutdown();
-}
-
