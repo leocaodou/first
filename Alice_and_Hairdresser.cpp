@@ -5,7 +5,6 @@
 #include <math.h>
 #include <algorithm>
 #include <stdlib.h>
-#include<vector>
 using namespace std;
 long long v[100000 + 10];
 int main()
