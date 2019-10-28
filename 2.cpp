@@ -6,7 +6,7 @@ main(void)
 	for(i=1;i<=20;i++)
 	{
 		scanf("%d",&a[i]);
-		if(a[i]<60)
+		if(a[i]<40)
 		b=b+1;
 	}
 	printf("%d",b);

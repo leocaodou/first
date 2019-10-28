@@ -105,7 +105,21 @@ public:
 		{
 			p = p->next;
 		}
+		if(p == NULL)
+		{
+			
+		}
 		return p->data;
+	}
+	node<T>* find(int x)
+	{
+		node<T> *p;
+		p = head;
+		for(int i = 0;i < x;i++)
+		{
+			p = p->next;
+		}
+		return p;
 	}
 };
 void evaluate(string& a)
@@ -165,6 +179,11 @@ void evaluate(string& a)
 					return;
 				}
 			}
+			if(a[i] == ' ')
+			{
+				cout << "ÊäÈë´íÎó" << endl;
+				return;
+			}
 			if(op.head == NULL)
 			{
 				cout << num.at(0);
@@ -181,6 +200,11 @@ void evaluate(string& a)
 			{	
 				if(lp(op.head->data) > rp(a[i]))
 				{
+					if(num.find(1) == NULL ||num.find(0) == NULL)
+					{
+						cout << "ÊäÈë´íÎó" << endl;
+						return;
+					}
 					double x = operate(num.at(1),num.at(0),op.at(0));
 					op.pop();
 					num.pop();
@@ -204,8 +228,6 @@ int main()
 {
 	string a;
 	cin >> a;
-	cout << a << '=';
-	a = a + '#';
 	evaluate(a);
 	return 0;
 }
