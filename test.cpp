@@ -83,7 +83,7 @@ int main()
 			if(!PushStack(S,1,x,y,z))
 				break; 
 			if(!PushStack(S,n-1,x,z,y))
-				break; 
+				break;
 		} 
 	} 
 	free(S->base); 
