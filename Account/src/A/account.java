@@ -1,5 +1,6 @@
 package A;
 import java.util.Date;
+import javafx.application.Application;
 class account{
 	private int id;
 	private double balance;
@@ -59,6 +60,6 @@ class account{
 	}
 	public String toString()
 	{
-		return "ÓÃ»§ID" + getId() + '\n' + "ÓÃ»§Óà¶î£º" + getBalance() + "ÃÀÔª\n" + "ÓÃ»§ÔÂÀûÂÊ£º" + getMonthlyInterestRate() + '\n' + "¿ª»§Ê±¼ä£º" + getDateCreated();
+		return "ç”¨æˆ·ID" + getId() + '\n' + "ï¿½Ã»ï¿½ï¿½ï¿½î£º" + getBalance() + "ï¿½ï¿½Ôª\n" + "ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê£ï¿½" + getMonthlyInterestRate() + '\n' + "ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ä£º" + getDateCreated();
 	}
 }

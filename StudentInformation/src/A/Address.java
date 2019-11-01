@@ -1,5 +1,5 @@
 package A;
-
+import javafx.application.Application;
 public class Address {
 	private String state;
 	private String street;
