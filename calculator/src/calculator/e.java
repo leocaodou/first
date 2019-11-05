@@ -7,6 +7,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.HBox;
 public class e extends Application {
 	private TextField Number1 = new TextField();
 	private TextField Number2 = new TextField();
@@ -18,24 +21,24 @@ public class e extends Application {
 	
 	public void start(Stage ps){
 		FlowPane fpane = new FlowPane();
+		BorderPane bpane = new BorderPane();
+		HBox hbox = new HBox();
 		fpane.getChildren().add(new Label("Number1"));
 		fpane.getChildren().add(Number1);
 		fpane.getChildren().add(new Label("Number2"));
 		fpane.getChildren().add(Number2);
 		fpane.getChildren().add(new Label("Result"));
 		fpane.getChildren().add(Result);
-		fpane.getChildren().add(btAdd);
-		fpane.getChildren().add(btSubtract);
-		fpane.getChildren().add(btMultiply);
-		fpane.getChildren().add(btDivide);
-		btAdd.setAlignment(Pos.TOP_RIGHT);
+		hbox.getChildren().addAll(btAdd,btSubtract,btMultiply,btDivide);
+		hbox.setAlignment(Pos.CENTER);
+		hbox.setSpacing(10);
+		bpane.setTop(fpane);
+		bpane.setBottom(hbox);
 		btAdd.setOnAction(e->calculateAdd());
-		btAdd.setAlignment(Pos.BASELINE_CENTER);
-		btSubtract.setAlignment(Pos.CENTER);
 		btSubtract.setOnAction(e->calculateSubtract());
 		btMultiply.setOnAction(e->calculateMultiply());
 		btDivide.setOnAction(e->calculateDivide());
-		Scene scene = new Scene(fpane,650,50);
+		Scene scene = new Scene(bpane,650,50);
 		ps.setTitle("Calcuator");
 		ps.setScene(scene);
 		ps.show();

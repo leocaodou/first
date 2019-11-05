@@ -18,9 +18,9 @@ public:
 	Complex operator- ( const Complex& other) const{//重载操作符+号，因为是两个自己定义的类相减，两个const原因同上
 		return Complex(real - other.real, imagine - other.imagine);
 	}
-	Complex& operator= ( const Complex& other) {//重载操作符=号，便于让自己定义的complex类赋值时进行操作
-		real = other.real;
-		imagine = other.imagine;
+	Complex& operator+= ( const Complex& other){
+		this->real += other.real;
+		this->imagine += other.imagine;
 		return *this;
 	}
 	friend ostream& operator<< ( ostream&,const Complex&);//友元函数，由于非成员重载<<函数会对类中的private的成员进行修改，所以必须在类中加入此友元函数，这里的const必须加上，防止传入的值为右值
@@ -35,7 +35,7 @@ Complex operator* ( const Complex& a, const Complex& other){//重载操作符*�
 }
 int main(){
 
-    Complex c1(4.234234, -27.6), c2(3.5, -4.7);
+    Complex c1(1, -27.6), c2(2, -4.7);
 
     Complex c3, c4;
 

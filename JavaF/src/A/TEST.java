@@ -16,7 +16,6 @@ public class TEST extends Application{
 	public void start(Stage pr) {
 		Pane pane=new Pane();
 		Circle circle=new Circle(200,100,20);
-		
 		circle.setStroke(Color.BLACK);
 		circle.setFill(Color.WHITE);
 		pane.getChildren().add(circle);
@@ -25,7 +24,6 @@ public class TEST extends Application{
 		Button bt2=new Button("right");
 		Button bt3=new Button("up");
 		Button bt4=new Button("down");
-		
 		hbox.getChildren().addAll(bt1,bt2,bt3,bt4);
 		hbox.setAlignment(Pos.CENTER);
 		hbox.setSpacing(10);
