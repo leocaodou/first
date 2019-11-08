@@ -17,7 +17,6 @@ public class e extends Application {
 	private Button btSubtract = new Button("Subtract");
 	private Button btMultiply = new Button("Multiply");
 	private Button btDivide = new Button("Divide");
-	
 	public void start(Stage ps){
 		FlowPane fpane = new FlowPane();
 		BorderPane bpane = new BorderPane();
