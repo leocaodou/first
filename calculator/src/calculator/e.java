@@ -10,13 +10,13 @@ import javafx.stage.Stage;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 public class e extends Application {
-	private TextField Number1 = new TextField();
+	private TextField Number1 = new TextField();//输入数据的文本框
 	private TextField Number2 = new TextField();
 	private TextField Result = new TextField();
 	private Button btAdd = new Button("Add");
 	private Button btSubtract = new Button("Subtract");
 	private Button btMultiply = new Button("Multiply");
-	private Button btDivide = new Button("Divide");
+	private Button btDivide = new Button("Divide");//加减乘除的按钮
 	public void start(Stage ps){
 		FlowPane fpane = new FlowPane();
 		BorderPane bpane = new BorderPane();
@@ -28,6 +28,7 @@ public class e extends Application {
 		fpane.getChildren().add(new Label("Result"));
 		fpane.getChildren().add(Result);
 		hbox.getChildren().addAll(btAdd,btSubtract,btMultiply,btDivide);
+		//把加减乘除按钮放入hbox
 		hbox.setAlignment(Pos.CENTER);
 		hbox.setSpacing(10);
 		bpane.setTop(fpane);
@@ -35,7 +36,7 @@ public class e extends Application {
 		btAdd.setOnAction(e->calculateAdd());
 		btSubtract.setOnAction(e->calculateSubtract());
 		btMultiply.setOnAction(e->calculateMultiply());
-		btDivide.setOnAction(e->calculateDivide());
+		btDivide.setOnAction(e->calculateDivide());//设计加减乘除的按钮事件
 		Scene scene = new Scene(bpane,650,50);
 		ps.setTitle("Calcuator");
 		ps.setScene(scene);
