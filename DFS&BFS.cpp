@@ -118,11 +118,40 @@ void lastOder(Node* r)
 		}
 	}
 }
+void change(Node* r)
+{
+	if(r)
+	{
+		Node* t;
+		t = r->R;
+		r->R = r->L;
+		r->L = t;
+		change(r->L);
+    	change(r->R);
+	}
+} 
 int main()
 {
 	Node *r,*p = createBinaryTree();
 	r = p;
 	preOder(r);
+	cout << endl;
+//	preOder2(r);
+//	cout << endl;
+	while( !s.empty() )
+    	s.pop();
+    r = p;
+    inOder(r);
+    cout << endl;
+    while( !s.empty() )
+    	s.pop();
+    r = p;
+  	lastOder(r);
+  	change(r);
+  	while( !s.empty() )
+    	s.pop();
+  	cout << endl <<"在交换之后" << endl;
+  		preOder(r);
 	cout << endl;
 //	preOder2(r);
 //	cout << endl;
