@@ -1,75 +1,64 @@
-import java.util.Scanner;
-import java.lang.*;
-abstract class GeometricObject
-{
-	String color;
-	boolean fild;
-	abstract String getcolor();
-	abstract void setcolor(String color);
-	abstract boolean getFild();
-	abstract void setFild(boolean fild);
-	abstract double getArea();
-	abstract double getPerimeter();
+
+ 
+/**
+ * 哈希表查找（除留余数法）
+ * @author calm
+ *
+ */
+public class test {
+	static int key[]={47,7,29,11,16,22,92,3,8,22};
+	static int N=key.length;	//散列表长度
+	static int ht[]=new int[N];
+	public static void main(String[] args) {
+		for (int i = 0; i < ht.length; i++) {
+			ht[i]=-1;	//初始化，可根据实际情况初始化
+		}
+	//	System.out.println(N);
+		System.out.print("散列地址:");
+		for (int i = 0; i < ht.length; i++) {
+			System.out.print(i+"	");
+		}
+		
+		for (int i = 0; i < key.length; i++) {
+			hashSearch(ht,N,key[i]);
+		}
+		
+		System.out.println();
+		System.out.print("关键码:");
+		for (int i = 0; i < ht.length; i++) {
+			System.out.print(ht[i]+"	");
+		}
+		
+	}
+	//散列表下标
+	static int h(int v){
+		return v%N;
+	}
+	
+	static int hashSearch(int ht[],int len,int k){
+		int j=h(k);
+		if (ht[j]==k) {//查找成功
+			return j;
+		}else if(ht[j]==-1){//该位置为空，插入，返回
+			ht[j]=k;
+			return j;
+		}
+		int i=(j+1)%N;
+		while (ht[i]!=-1&&i!=j) {//循环遍历散列表
+			if(ht[i]==k){
+				return i;
+			}else {
+				i=(++i)%N;
+			}
+		}
+		if (i==j) {//遍历散列表一遍，没找到，满
+			System.err.println("哈希表溢出！");
+		}else {
+			ht[i]=k;
+			return i;
+		}
+		return 0;
+	}
+	
 }
-class Triangle extends GeometricObject{
-	double s1;
-	double s2;
-	double s3;
-	Triangle(double s1,double s2,double s3,String color,boolean filde)
-	{
-		this.s1 = s1;
-		this.s2 = s2;
-		this.s3 = s3;
-		setcolor(color);
-		setFild(filde);
-	}
-	public String toString()
-	{
-		return "��ɫ" + getcolor() + '\n' + "�Ƿ����" + getFild() + '\n'+ "���" + getArea() + '\n' + "�ܳ�" + getPerimeter();
-	}
-	String getcolor()
-	{
-		return color;
-	}
-	void setcolor(String color)
-	{
-		this.color = color;
-	}
-	public boolean getFild()
-	{
-		return fild;
-	}
-	public void setFild(boolean fild)
-	{
-		this.fild = fild;
-	}
-	double getArea()
-	{
-		double p;
-		p = (s1 + s2 + s3) / 2;
-		return Math.sqrt(p*(p - s1) * (p - s2) * (p - s3));
-	}
-	double getPerimeter()
-	{
-		return s1 + s2 + s3;
-	}
-}
-public class test{
-	public static void main(String[] args){
-		double s1,s2,s3;
-		String c,f;
-		boolean fild;
-		Scanner in = new Scanner(System.in);
-		s1 = in.nextDouble();
-		s2 = in.nextDouble();
-		s3 = in.nextDouble();
-		c = in.next();
-		f = in.next();
-		if(f.equals("true"))
-			fild = true;
-		else
-			fild = false;
-		Triangle a = new Triangle(s1,s2,s3,c,fild);
-		System.out.println(a.toString());
-	}
-}
+ 

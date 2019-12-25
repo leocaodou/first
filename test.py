@@ -1,27 +1,6 @@
-t = input()
-s = len(t)
-for i in range (0,len(t) - 1) :
-	if t[i] == t[i + 1] :
-		s = s + 1
-		k = 1
-		while 1:
-			if (i - k < 0) or (i + k + 1 >= len(t)) :
-				break
-			if t[i - k] == t[i + k + 1] :
-				s = s + len(set(t[i - k : i + k + 2]))
-				k = k + 1
-			else :
-				break
-for i in range (0,len(t) - 2) :
-	if t[i] == t[i + 2] :
-		s = s + len(set(t[i : i + 3]))
-		k = 1
-		while 1:
-			if (i - k < 0) or (i + k + 2 >= len(t)) :
-				break
-			if t[i - k] == t[i + k + 2] :
-				s = s + len(set(t[i - k : i + k + 3]))
-				k = k + 1
-			else :
-				break
-print(s)
+def dg(n):
+    d = 5**(1/2)
+    sum = 1/d *(((1+d)/2)**n - ((1-d)/2)**n) % 10000007 * 1/d *(((1+d)/2)**(n+1) - ((1-d)/2)**(n+1)) % 1000000007
+    print(sum)
+a=int(input())
+dg(a)
