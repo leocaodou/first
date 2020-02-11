@@ -8,7 +8,16 @@
 using namespace std;
 int main()
 {
-	long long a = 1000000000000000000;
-	a = a % 1000000000000000000;
-	cout << a;
+	int k;
+	cin >> k;
+	if(18 * 2 < k)
+		cout << -1;
+	else
+	{
+		for(int i = 1;i <= k / 2;i++)
+			cout << 8;
+		for(int i = 1;i <= k % 2;i++)
+			cout << 4;
+	}
+	return 0;
 }
