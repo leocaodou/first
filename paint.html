@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>»­»­</title>
+	<script type="text/javascript">
+		function writeMessage(canvas,message)
+		{
+			var context=canvas.getContext('2d');
+			context.clearRect(0, 0, canvas.width, canvas.height);
+			context.fone='18pt Calibri';
+        	context.fillStyle='black';
+        	context.fillText(message,10,25);
+		}
+		function getMousePos(canvas,evt)
+		{
+	        var rect = canvas.getBoundingClientRect(), root = document.documentElement;
+	        // return relative mouse position
+	        var mouseX = evt.clientX - rect.top - root.scrollTop;
+	        var mouseY = evt.clientY - rect.left - root.scrollLeft;
+	        return
+	        {
+	        	x: mouseX,
+	        	y: mouseY
+	        };
+    	}
+    	window.onload=function()
+    	{
+    		var canvas=document.getElementById("myCanvas");
+        	var context=canvas.getContext("2d");
+        	context.beginPath();
+        	context.moveTo(0,0);
+        	canvas.addEventListener('mousemove',function(evt)
+        	{
+	            var mousePos=getMousePos(canvas,evt);
+	            context.lineTo(mousePos.x,mousePos.y);
+	            context.stroke();
+        	},false);
+    	}
+	</script>
+</head>
+	<body>
+		<canvas id="myCanvas" width="1024" height="768"></canvas>
+	</body>
+</html>
