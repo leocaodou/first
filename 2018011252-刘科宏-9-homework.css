@@ -1,0 +1,18 @@
+td
+{
+  	background-color: #d9d6c3;
+  	color: #11264f;
+  	font-family: sans-serif;
+  	border:1px solid black;
+}
+table,th
+{
+	border:1px solid black;
+	text-align: center;
+}
+h2
+{
+	border: red solid thin;
+	outline-style: double;
+	text-align: center;
+}

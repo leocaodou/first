@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<fish>
+	<kind>
+		<name>香鱼</name>
+		<location>河流</location>
+		<size>中偏小</size>
+		<time>00:00-23:59</time>
+	</kind>
+	<kind>
+		<name>神仙鱼</name>
+		<location>河流</location>
+		<size>小</size>
+		<time>16:00-09:00</time>
+		<color>黄色</color>
+	</kind>
+	<kind>
+		<name>泥鳅</name>
+		<location>河流</location>
+		<size>小</size>
+		<time>00:00-23:59</time>
+	</kind>
+	<kind>
+		<name>远东哲罗鱼</name>
+		<location>悬崖</location>
+		<size>大</size>
+		<time>16:00-09:00</time>
+	</kind>
+	<kind>
+		<name>竹荚鱼</name>
+		<location>大海</location>
+		<size>小</size>
+		<time>00:00-23:59</time>
+	</kind>
+	<kind>
+		<name>蝶鱼</name>
+		<location>大海</location>
+		<size>中偏小</size>
+		<time>00:00-23:59</time>
+	</kind>
+</fish>
