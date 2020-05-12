@@ -7,13 +7,13 @@
 #include <stdlib.h> 
 #include <stack>
 using namespace std;
-class long_integer
+class long_integer //长整数
 {
 private:
-	stack<int> num;
-	char x;
+	stack<int> num; //数的栈
+	char x;			//符号
 public:
-	long_integer(string x)
+	long_integer(string x)   //有参的构造函数
 	{
 		int j = 0;
 		if(x[0] == '-')
@@ -41,7 +41,7 @@ public:
 		num.pop();
 	}
 };
-void addition(long_integer a,long_integer b)
+void addition(long_integer a,long_integer b) //两个长整数相加的函数
 {
 	int k = 0;
 	stack<int> c;
@@ -119,7 +119,7 @@ void subtraction(long_integer a,long_integer b)
 		c.pop();
 	}
 }
-bool bigger(string a,string b)
+bool bigger(string a,string b)             //两个数单纯的比较大小，不看符号
 {
 	int i = 0,j = 0;
 	if(a[0] == '-')
@@ -145,7 +145,7 @@ bool bigger(string a,string b)
 int main()
 {
 	string a,b;
-	int k = 0;
+	int k = 0;		//k是统计总的符号个数，来判断是做加法还是减法
 	char c;
 	cin >> a >> c >> b;
 	if(a[0] == '-')
@@ -166,7 +166,7 @@ int main()
 	{
 		if(a[0] == '-' && bigger(a,b))
 			cout << '-';
-		else if(!bigger(a,b))
+		else if(!bigger(a,b) && a[0] != '-')
 			cout << '-';
 		subtraction(x,y);
 	}
