@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>登录页面</title>
+<link rel="stylesheet" href="css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="css/login.css">
+<script type="text/javascript">
+	function checknum() {
+		num = formBook.num.value;
+		var obj = document.getElementById("num");
+		var reg = new RegExp("^[0-9]*$");
+		if (!reg.test(obj.value))
+			alert("请输入数字!");
+	}
+</script>
+</head>
+<body>
+	<div class="container-fluid">
+		<div id="login-form">
+			<h3 class="text-center">请添加班级订书信息</h3>
+			<form class="form-horizontal" role="form" id="formBook"
+				action="/WebMVC/servlet/insertTB?type=insert" method="post">
+				<div class="input-group">
+					<input type="text" class="form-control" id="className"
+						name="className" placeholder="请输入班级名" required="required" />
+				</div>
+				<div class="input-group">
+					<input type="text" class="form-control" id="bookName"
+						name="bookName" placeholder="请输入书名" required="required" />
+				</div>
+				<div class="input-group">
+					<input type="text" class="form-control" id="publisher"
+						name="publisher" placeholder="请输入图书的出版社" required="required" />
+				</div>
+				<div class="input-group">
+					<input type="text" class="form-control" id="num" name="num"
+						placeholder="请输入订书数量" required="required" />
+				</div>
+				<button class="btn btn-default btn-primary btn-block">提交</button>
+			</form>
+		</div>
+	</div>
+	<script src="js/jquery-1.11.2.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+</body>
+</html>

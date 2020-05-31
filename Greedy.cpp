@@ -101,7 +101,7 @@ void up(int p)		//将一个非顶点的节点向上提
 		if(heap[p/2].WorkTime > heap[p].WorkTime)
 			sweap(heap[p/2] , heap[p]);
 		else
-			break;
+			break;n
 		p = p / 2;
 	}
 }
@@ -220,7 +220,7 @@ int main()
 	int q = n;
 	while(q)
 	{
-		cout <<"将机器" << heap[1].id << "从" << heap[1].WorkTime << "到" << a[q].time << "的时间段分配给作业" << a[q].no << endl;
+		cout <<"将机器" << heap[1].id << "从" << heap[1].WorkTime << "到" << a[q].time + heap[1].WorkTime << "的时间段分配给作业" << a[q].no << endl;
 		cout << "调整后的最小堆，格式为：机器id(占用时间)" << endl;
 		cout << ".............................................................." << endl;
 		heap[1].WorkTime += a[q].time;
