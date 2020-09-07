@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="css/login.css">
+	<title>问卷系统登陆</title>
+</head>
+<body>
+	<div class="box">
+        <h2>管理员登陆</h2>
+        <form name="login" action="login" method="post">
+            <div class="inputbox">
+                <input type="text" name="adminName" required="required"/>
+                <label>管理员名称</label>
+            </div>
+            <div class="inputbox">
+                <input type="password" name="adminPaw" required="required"/>
+                <label>管理员密码</label>
+            </div>
+             <input type="submit" value="登陆">
+             <a href="registe.html">
+    			<input class="registe" value="注册" type="button">
+			</a>
+        </form>
+    </div>
+</body>
+</html>

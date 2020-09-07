@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>设计问题选项</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="css/question.css">
+</head>
+<body>
+	<div class="box">
+        <h2>设计你问题的选项</h2>
+        <form name="select" action="select" method="post">
+            <div class="inputbox">
+                <input type="text" name="selectOrder" required="required"/>
+                <label>选项序号为</label>
+            </div>
+            <div class="inputbox">
+                <input type="text" name="title" required="required"/>
+                <label>选项内容</label>
+            </div>
+			<br><br>
+            <input type="submit" value="设置下一个选项"  name="next">
+            <input type="submit" value="设置下一个问题"  name="next">
+            <input type="submit" value="提交问卷" name="next">
+        </form>
+    </div>
+</body>
+</html>

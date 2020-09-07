@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="css/makepaper.css">
+	<title>问卷设计</title>
+</head>
+<body>
+	<div class="box">
+        <h2>设计你的问卷</h2>
+        <form name="paper" action="paper" method="post">
+            <div class="inputbox">
+                <input type="text" name="title" required="required"/>
+                <label>问卷标题</label>
+            </div>
+            <div class="inputbox">
+                <input type="datetime" name="od" required="required"/>
+                <label>开卷时间</label>
+            </div>
+            <div class="inputbox">
+                <input type="datetime" name="ed" required="required"/>
+                <label>截至时间</label>
+            </div>
+            <div class="inputbox">
+                <input type="text" name="thx" />
+                <label>感谢信息</label>
+            </div>
+             <input type="submit" value="开始创建内容">
+        </form>
+    </div>
+</body>
+</html>

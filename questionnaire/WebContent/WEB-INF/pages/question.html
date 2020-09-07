@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+	<title>设计问卷问题</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="css/question.css">
+</head>
+<body>
+	<div class="box">
+        <h2>设计你问卷的问题</h2>
+        <form name="question" action="question" method="post">
+            <div class="inputbox">
+                <input type="text" name="questionOrder" required="required"/>
+                <label>问题序号为</label>
+            </div>
+            <div class="inputbox">
+                <input type="text" name="title" required="required"/>
+                <label>问题内容</label>
+            </div>
+			<span>单项：</span><input type="radio" checked="checked" name="type" value="单选" />
+			<span>多选：</span><input type="radio" checked="checked" name="type" value="多选" />
+			<br><br>
+            <input type="submit" value="设计选项">
+        </form>
+    </div>
+</body>
+</html>

@@ -21,7 +21,7 @@ public class UserDao {
 			con = conn.getCon();
 			
 	 		sql = con.createStatement();
-			rs = sql.executeQuery("SELECT * FROM student WHERE psw="+userPwd+" and name='"+userName+"'");
+			rs = sql.executeQuery("SELECT * FROM t_user WHERE psw="+userPwd+" and name='"+userName+"'");
 			/*
 			PreparedStatement pstmt 
 			= con.prepareStatement

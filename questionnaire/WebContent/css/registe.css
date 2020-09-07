@@ -1,0 +1,105 @@
+@charset "UTF-8";
+body{
+    margin:0px;
+    padding:0px;
+    font-family:sans-serif;
+    background: url(../img/P6.jpg) repeat-x;
+    background-size:cover;
+    font-size:15px;
+}
+.box
+{
+	width: 700px;
+	height: auto;
+	background: #CAFFFF;
+	opacity: 0.8;
+	margin: 40px auto;
+	padding: 10px;
+}
+.box h2
+{
+	text-align:center;
+}
+.box *:focus{outline :none;}
+.box ul
+{
+		width: 650px;
+		margin: 0 auto;
+}
+.box ul li
+{
+	border-bottom: 1px solid #dfdfdf;
+	list-style: none;
+	padding: 20px;
+}
+.box ul li label
+{
+	width: 120px;
+	display: inline-block;
+	float: left;
+}
+.box ul li input[type=text],.box ul li input[type=password]
+{
+		width: 220px;
+		height: 25px;
+		border :1px solid #aaa;
+		padding: 3px 8px;
+		border-radius: 5px;
+}
+.box ul li input:focus
+{
+	border-color: #c00;
+			
+}
+.box ul li input[type=text]
+{
+	transition: padding .25s;
+	-o-transition: padding  .25s;
+	-moz-transition: padding  .25s;
+	-webkit-transition: padding  .25s;
+}
+.box ul li input[type=password]
+{
+	transition: padding  .25s;
+	-o-transition: padding  .25s;
+	-moz-transition: padding  .25s;
+	-webkit-transition: padding  .25s;
+}
+.box ul li input:focus
+{
+	padding-right: 70px;
+}
+.tips
+{
+	color: rgba(0, 0, 0, 0.7);
+	padding-left: 10px;
+}
+.tips_true,.tips_false
+{
+	padding-left: 10px;
+}
+.tips_true
+{
+	color: green;
+}
+.tips_false
+{
+	color: red;
+}
+.box .registe
+{
+	margin-left:120px;
+    border:none;
+    outline:none;
+    font-size: 16px;
+    color:#fff;
+    background: blue;
+    padding:16px 200px;
+    cursor: pointer;
+    border-radius:10px;
+    opacity: 1;
+}
+.box .registe:active
+{
+	background: #000093;
+}

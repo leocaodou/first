@@ -9,7 +9,6 @@
 <body>
 	<%	
 	String Login = (String)session.getAttribute("Login");
-	
 	if (Login != null && Login.equals("OK")) {		
 		out.println("欢迎您的到来!");
 		session.invalidate();	

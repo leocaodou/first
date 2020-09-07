@@ -1,0 +1,36 @@
+@charset "UTF-8";
+body
+{
+	background: url(../img/P5.jpg) repeat-x;
+	margin:0px;
+    padding:0px;
+    font-family:sans-serif;
+    background-size:cover;
+}
+h1
+{
+	text-align:center;
+}
+.but,a
+{
+	-webkit-border-radius: 28;
+	-moz-border-radius: 28;
+	border-radius: 28px;
+	text-shadow: 0px 1px 0px #2f6627;
+	font-family: Arial;
+	color: #ffffff;
+	font-size: 16px;
+	background: #0072E3;
+	padding: 12px 30px 12px 30px;
+	border: solid #18ab29 1px;
+	text-decoration: none;
+}
+.but:hover,a:hover{
+  color: #ffffff;
+  background: #66B3FF;
+  text-decoration: none;
+}
+.center
+{
+	text-align:center;
+}

@@ -13,7 +13,7 @@
                 xhr = new ActiveXObject("Microsoft.XMLHTTP");
             }
             var x = document.getElementById("sid").value;
-            xhr.open("GET", "http://120.26.176.79:8020/GetNumber"+x,true);
+            xhr.open("GET", "http://www.cycycd.com/examtest/obtain/?studentId="+x,true);
             xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded;charset=UTF-8");
             xhr.send(null);
             xhr.onreadystatechange = function(){
