@@ -9,6 +9,19 @@
 using namespace std;
 int main()
 {
-	double a = 1.66666666666666666666;
-	cout << a;
+	int T;
+	cin >> T;
+	int i = 1;
+	int ans = 0;
+	while(T--)
+	{
+		int n,m;
+		cin >> n >> m;
+		if(m>=n)
+			ans = ans ^ i;
+		else
+			ans = ans ^ (i-1);
+		i++;
+	}
+	cout << ans;
 }
