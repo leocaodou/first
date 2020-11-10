@@ -1,27 +1,34 @@
-#include <stdio.h>
-#include <iostream>
-#include <string>
-#include <string.h>
-#include <math.h>
-#include <algorithm>
-#include <stdlib.h> 
-#include <stack>
+#include <bits/stdc++.h>
 using namespace std;
+long long a[2010];
+int b[2010];
+int mod = 20000311;
+typedef long long ll;
+void init()
+{
+	a[1] = 1ll;
+	for(int i = 2; i <= 2000;i++)
+		a[i] = i * a[i - 1] % mod;
+}
+bool cmp(int a,int b)
+{
+	if(a > b)
+		return true;
+	else
+		return false;
+}
 int main()
 {
-	int T;
-	cin >> T;
-	int i = 1;
-	int ans = 0;
-	while(T--)
+	int n,m;
+	cin >> n >> m;
+	sum = a[n];
+	for (int i = 0; i < m; ++i)
 	{
-		int n,m;
-		cin >> n >> m;
-		if(m>=n)
-			ans = ans ^ i;
-		else
-			ans = ans ^ (i-1);
-		i++;
+		cin >> b[i];
 	}
-	cout << ans;
+	sort(b,b+m,cmp);
+	for (int i = 0; i < m; ++i)
+	{
+		sum = sum - 
+	}
 }
